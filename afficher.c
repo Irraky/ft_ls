@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/24 15:03:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/24 15:28:30 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int		main(int argc, char **argv)
 	rep = opendir("." );
 	init_env(&env);
 	if (get_data(argv, &env) != -1)
+	{
 		printf("%s", env.flag);
-	argv[1] = argv[2];
+	}  
 	//print_data;
 //	destroy_env(&env);
 /*	while ((lecture = readdir(rep))) 

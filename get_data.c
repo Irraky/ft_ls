@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/24 14:53:32 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/24 17:11:33 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int			compare_flags(char *str, t_env *env)
 
 	i = -1;
 	while(*str++)
-	{
 		if (!ft_strchr(flags, *str))
 		{
 			printf("ft_ls : illegal option -- %c\n%s", *str,
@@ -30,7 +29,6 @@ static int			compare_flags(char *str, t_env *env)
 		}
 		else if (!ft_strchr(env->flag, *str))
 			env->flag[env->pflag++] = *str;
-	}
 	return (1);
 }
 
