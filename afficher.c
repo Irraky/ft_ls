@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/19 18:02:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/24 15:03:16 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 
 static void			init_env(t_env *env)
 {
+	env->pflag = 0;
 }
-
+/*
 static void			destroy_env(t_env *env)
 {
 }
-
+*/
 int		main(int argc, char **argv)
 {
 	t_env env;
-	struct dirent *lecture;
-	struct	stat fichier;
+//	struct dirent *lecture;
+//	struct	stat fichier;
 	DIR *rep;
 	(void)argc;
-	env.a = 1;
 	rep = opendir("." );
 	init_env(&env);
-	if (!get_data(argv, &env))
-		printf("ls : illegal option --%c\nusage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]", 'c');
-	else
+	if (get_data(argv, &env) != -1)
+		printf("%s", env.flag);
+	argv[1] = argv[2];
 	//print_data;
-	destroy_env(&env);
+//	destroy_env(&env);
 /*	while ((lecture = readdir(rep))) 
 	{
 		if (lecture->d_name[0] = '.' || env->a == 1)
