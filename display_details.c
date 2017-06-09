@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   display_details.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/09 17:54:48 by drecours         ###   ########.fr       */
+/*   Created: 2017/05/26 15:42:12 by drecours          #+#    #+#             */
+/*   Updated: 2017/06/09 13:49:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
-
-# include <sys/stat.h>
-# include <dirent.h>
-#include <string.h>
-
-# define WRONG_FLAG -1
-
-typedef struct				s_env
+/*void		display_details(struct dirent *lecture)
 {
-	int						pflag;
-	char					flag[6];
-}							t_env;
-
-
-char	*ft_strchr(const char *str, char c);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_printf(const char *format, ...);
-#endif
+	info(lecture);
+}*/

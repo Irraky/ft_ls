@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/09 17:54:48 by drecours         ###   ########.fr       */
+/*   Created: 2016/11/21 10:14:19 by drecours          #+#    #+#             */
+/*   Updated: 2016/12/20 15:39:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
-
-# include <sys/stat.h>
-# include <dirent.h>
-#include <string.h>
-
-# define WRONG_FLAG -1
-
-typedef struct				s_env
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int						pflag;
-	char					flag[6];
-}							t_env;
+	int i;
 
-
-char	*ft_strchr(const char *str, char c);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_printf(const char *format, ...);
-#endif
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
