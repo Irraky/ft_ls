@@ -6,12 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 13:44:34 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/09 17:55:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:37:06 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_ls.h"
+#include <unistd.h>
 
 static void		sort_alpha(char **arg)
 {
@@ -37,11 +38,16 @@ static void		sort_type(char **arg)
 	struct stat buf;
 	while (*arg)
 	{
-		if (lstat(*arg++, &buf) == 0)
+		if (lstat(*arg, &buf) == -1)
 		{
+			ft_printf("ls: %s: ", *arg);
+			perror("");
 		}
-		//else
-
+		else
+		{
+			ft_printf("coin");
+		}
+		arg += 1;
 	}
 }
 

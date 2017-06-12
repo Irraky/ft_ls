@@ -6,13 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 17:09:26 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:16:42 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void			trick(wchar_t args, t_env *env)
+void			trick(wchar_t args, t_envpf *env)
 {
 	ft_bzero(&env->wchar, 5);
 	if ((unsigned)args < 0x80 || (MB_CUR_MAX == 1 && (unsigned)args <= 255))
@@ -40,7 +40,7 @@ void			trick(wchar_t args, t_env *env)
 	env->weight = (MB_CUR_MAX == 1 && args > 255) ? -1 : env->weight;
 }
 
-void			convc(va_list arg, t_env *env)
+void			convc(va_list arg, t_envpf *env)
 {
 	int			i;
 	char		c;
@@ -68,7 +68,7 @@ void			convc(va_list arg, t_env *env)
 	}
 }
 
-static void		tricks(t_env *env, char *str)
+static void		tricks(t_envpf *env, char *str)
 {
 	int		i;
 	int		j;
@@ -95,7 +95,7 @@ static void		tricks(t_env *env, char *str)
 	}
 }
 
-void			convs(va_list args, t_env *env)
+void			convs(va_list args, t_envpf *env)
 {
 	char	*str;
 	char	*null;
@@ -112,7 +112,7 @@ void			convs(va_list args, t_env *env)
 		tricks(env, str);
 }
 
-void			convpercent(va_list args, t_env *env)
+void			convpercent(va_list args, t_envpf *env)
 {
 	int	i;
 

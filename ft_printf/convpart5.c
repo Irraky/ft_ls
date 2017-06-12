@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/17 12:07:06 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:17:20 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		ft_flags(t_env *env)
+static void		ft_flags(t_envpf *env)
 {
 	if (env->conv.nb[0] == '-')
 		ft_putinit(env, "-", 1);
@@ -20,7 +20,7 @@ static void		ft_flags(t_env *env)
 		ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", 1);
 }
 
-static int		first_flags_d(t_env *env, int max, int lg)
+static int		first_flags_d(t_envpf *env, int max, int lg)
 {
 	int		flag;
 	int		i;
@@ -48,7 +48,7 @@ static int		first_flags_d(t_env *env, int max, int lg)
 	return (flag);
 }
 
-void			convd(va_list args, t_env *env)
+void			convd(va_list args, t_envpf *env)
 {
 	int		flag;
 	int		max;
@@ -74,13 +74,13 @@ void			convd(va_list args, t_env *env)
 		ft_putinit(env, " ", 1);
 }
 
-void			convgd(va_list args, t_env *env)
+void			convgd(va_list args, t_envpf *env)
 {
 	env->l = 1;
 	convd(args, env);
 }
 
-void			convi(va_list args, t_env *env)
+void			convi(va_list args, t_envpf *env)
 {
 	convd(args, env);
 }

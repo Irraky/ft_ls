@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 16:44:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 16:52:35 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:21:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct			s_conversion_pourcent
 	int					plus;
 }						t_conversion_pourcent;
 
-typedef struct			s_env
+typedef struct			s_envpf
 {
 	int						indexstr;
 	int						i;
@@ -50,44 +50,44 @@ typedef struct			s_env
 	int						z;
 	char					wchar[5];
 	t_conversion_pourcent	conv;
-}						t_env;
+}						t_envpf;
 
 int						ft_printf(const char *format, ...);
-void					ft_putinit(t_env *env, char *addit, int size);
-void					get_data(t_env *env, const char *format, va_list conv);
-typedef void			(*t_con)(va_list arg, t_env *env);
+void					ft_putinit(t_envpf *env, char *addit, int size);
+void					data(t_envpf *env, const char *format, va_list conv);
+typedef void			(*t_con)(va_list arg, t_envpf *env);
 
 /*
 **CONVERSIONS
 */
-void					convitoa(va_list arg, t_env *env);
-void					convitoabase(va_list arg, t_env *env, int base);
-void					trick(wchar_t args, t_env *env);
+void					convitoa(va_list arg, t_envpf *env);
+void					convitoabase(va_list arg, t_envpf *env, int base);
+void					trick(wchar_t args, t_envpf *env);
 
-void					convgs(va_list arg, t_env *env);
-void					convs(va_list arg, t_env *env);
-void					convp(va_list arg, t_env *env);
-void					convgd(va_list arg, t_env *env);
-void					convd(va_list arg, t_env *env);
-void					convi(va_list arg, t_env *env);
-void					convgo(va_list arg, t_env *env);
-void					convo(va_list arg, t_env *env);
-void					convgu(va_list arg, t_env *env);
-void					convu(va_list arg, t_env *env);
-void					convgx(va_list arg, t_env *env);
-void					convx(va_list arg, t_env *env);
-void					convgc(va_list arg, t_env *env);
-void					convc(va_list arg, t_env *env);
-void					convpercent(va_list arg, t_env *env);
+void					convgs(va_list arg, t_envpf *env);
+void					convs(va_list arg, t_envpf *env);
+void					convp(va_list arg, t_envpf *env);
+void					convgd(va_list arg, t_envpf *env);
+void					convd(va_list arg, t_envpf *env);
+void					convi(va_list arg, t_envpf *env);
+void					convgo(va_list arg, t_envpf *env);
+void					convo(va_list arg, t_envpf *env);
+void					convgu(va_list arg, t_envpf *env);
+void					convu(va_list arg, t_envpf *env);
+void					convgx(va_list arg, t_envpf *env);
+void					convx(va_list arg, t_envpf *env);
+void					convgc(va_list arg, t_envpf *env);
+void					convc(va_list arg, t_envpf *env);
+void					convpercent(va_list arg, t_envpf *env);
 
 /*
 **FLAGS
 */
 
-void					getchamp(t_env *env, const char *format, va_list arg);
-void					getprecision(t_env *env, const char *format,
+void					getchamp(t_envpf *env, const char *format, va_list arg);
+void					getprecision(t_envpf *env, const char *format,
 						va_list arg);
-void					littleflags(t_env *env, const char *format);
+void					littleflags(t_envpf *env, const char *format);
 
 /*
 **LIBFT

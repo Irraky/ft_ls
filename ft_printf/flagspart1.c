@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 16:58:05 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:17:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static	void	wildcard(t_env *env, va_list arg, const char *format)
+static	void	wildcard(t_envpf *env, va_list arg, const char *format)
 {
 	int		i;
 
@@ -29,7 +29,7 @@ static	void	wildcard(t_env *env, va_list arg, const char *format)
 	}
 }
 
-void			getchamp(t_env *env, const char *format, va_list arg)
+void			getchamp(t_envpf *env, const char *format, va_list arg)
 {
 	int		add;
 	int		place;
@@ -58,7 +58,7 @@ void			getchamp(t_env *env, const char *format, va_list arg)
 	}
 }
 
-void			getprecision(t_env *env, const char *format, va_list arg)
+void			getprecision(t_envpf *env, const char *format, va_list arg)
 {
 	int		add;
 	int		place;
@@ -85,7 +85,7 @@ void			getprecision(t_env *env, const char *format, va_list arg)
 	}
 }
 
-void			littleflags(t_env *env, const char *format)
+void			littleflags(t_envpf *env, const char *format)
 {
 	int			var;
 

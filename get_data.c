@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/09 16:23:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:37:58 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int			compare_flags(char *str, t_env *env)
 	while (*str++)
 		if (!ft_strchr(flags, *str))
 		{
-			printf("ft_ls : illegal option -- %c\n%s", *str,
+			ft_printf("ft_ls : illegal option -- %c\n%s", *str,
 					"usage: ft_ls [Ralrt] [file...]");
 			return (WRONG_FLAG);
 		}

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/09 17:54:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/12 11:38:13 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct				s_env
 }							t_env;
 
 
-char	*ft_strchr(const char *str, char c);
+char	*ft_strchr(const char *s, int c);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_printf(const char *format, ...);
 #endif
