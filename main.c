@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:37:51 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:52:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		main(int argc, char **argv)
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
-		ft_printf("%s", env.flag);
-		manage_args(argv, argc);
+		//ft_printf("%s", env.flag);
+		manage_args(argv, argc, &env);
 	}
 	//print_data;
 //	destroy_env(&env);

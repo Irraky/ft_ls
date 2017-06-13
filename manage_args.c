@@ -6,15 +6,16 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 13:44:34 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:37:06 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:49:52 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_ls.h"
 #include <unistd.h>
+#include "details.c"
 
-static void		sort_alpha(char **arg)
+void		sort_alpha(char **arg)
 {
 	int		ite;
 	char	*tmp;
@@ -33,7 +34,7 @@ static void		sort_alpha(char **arg)
 	}
 }
 
-static void		sort_type(char **arg)
+static void		sort_type(char **arg, t_env *env)
 {
 	struct stat buf;
 	while (*arg)
@@ -45,13 +46,15 @@ static void		sort_type(char **arg)
 		}
 		else
 		{
-			ft_printf("coin");
+			if (ft_strchr(env->flag, 'l'))
+				details(*arg, buf);
+			//fprintf (stdout, "Protection : %o\n", buf.st_mode);
 		}
 		arg += 1;
 	}
 }
 
-void			manage_args(char **arg, int arc)
+void			manage_args(char **arg, int arc, t_env *env)
 {
 	int		i;
 	int		begin;
@@ -64,7 +67,7 @@ void			manage_args(char **arg, int arc)
 	if (arc > begin)
 	{
 		sort_alpha(&arg[begin]);
-		sort_type(&arg[begin]);
+		sort_type(&arg[begin], env);
 	}
 	/*else
 	 * mettre '.' dans liste dossier*/
