@@ -6,27 +6,63 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:38:13 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/16 13:42:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include <sys/stat.h>
-# include <dirent.h>
+#include <sys/stat.h>
+#include <dirent.h>
 #include <string.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <pwd.h>
+#include <grp.h>
+#include <stdio.h>
 
 # define WRONG_FLAG -1
+
+typedef struct				s_content
+{
+	char					*name;
+	struct s_content		*next;
+	struct s_content		*prev;
+}							t_content;
+
+typedef struct				s_dir
+{
+	char					*name;
+	struct s_dir			*next;
+	struct s_dir			*prev;
+}							t_dir;
+
+typedef struct				s_list
+{
+	t_dir					*start;
+	t_content				*firstname;
+}							t_list;
 
 typedef struct				s_env
 {
 	int						pflag;
 	char					flag[6];
+	int						flagname;
 }							t_env;
 
+/*
+** FT_LS FUNCTIONS
+*/
 
-char	*ft_strchr(const char *s, int c);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_printf(const char *format, ...);
+void		manage_args(char **arg, int arc, t_env *env);
+void		details(char *str, struct stat buf);
+int			get_data(char **argv, t_env *env);
+/*
+** ADDITIONAL FONCTIONS
+*/
+
+char		*ft_strchr(const char *s, int c);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_printf(const char *format, ...);
 #endif

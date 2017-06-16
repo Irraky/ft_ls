@@ -6,20 +6,16 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/13 15:52:26 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/16 13:42:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include<stdlib.h>
 #include "ft_ls.h"
-#include "display_details.c"
-#include "get_data.c"
-#include "manage_args.c"
 
 static void			init_env(t_env *env)
 {
 	env->pflag = 0;
+	env->flagname = 0;
 }
 /*
 static void			destroy_env(t_env *env)

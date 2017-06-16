@@ -6,12 +6,10 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:37:58 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/16 13:43:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strchr.c"
-#include "stdio.h"
 #include "ft_ls.h"
 
 static int			compare_flags(char *str, t_env *env)
@@ -32,7 +30,7 @@ static int			compare_flags(char *str, t_env *env)
 	return (1);
 }
 
-int			get_data(char	**argv, t_env *env)
+int			get_data(char **argv, t_env *env)
 {
 	int		i;
 
