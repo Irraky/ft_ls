@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 13:44:34 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/16 13:41:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/19 17:36:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void		sort_alpha(char **arg)
 static void		sort_type(char **arg, t_env *env)
 {
 	struct stat buf;
+	char	**tmp;
+
+	tmp = arg;
 	while (*arg)
 	{
 		if (lstat(*arg, &buf) == -1)
@@ -41,12 +44,17 @@ static void		sort_type(char **arg, t_env *env)
 			ft_printf("ls: %s: ", *arg);
 			perror("");
 		}
-		else
+		arg += 1;
+	}
+	while (*tmp)
+	{
+		printf("%s", *tmp);
+		if (!(lstat(*arg, &buf) == 0))
 		{
 			if (ft_strchr(env->flag, 'l'))
 				details(*arg, buf);
 		}
-		arg += 1;
+		tmp += 1;
 	}
 }
 
