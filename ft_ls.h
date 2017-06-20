@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/16 13:42:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/20 14:53:41 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct				s_content
 {
 	char					*name;
 	struct s_content		*next;
-	struct s_content		*prev;
+//	struct s_content		*prev;
 }							t_content;
 
 typedef struct				s_dir
@@ -62,6 +62,8 @@ int			get_data(char **argv, t_env *env);
 ** ADDITIONAL FONCTIONS
 */
 
+void		*ft_memalloc(size_t size);
+void		*ft_memset(void *b, int c, size_t len);
 char		*ft_strchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_printf(const char *format, ...);
