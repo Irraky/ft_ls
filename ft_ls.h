@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/20 14:53:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/20 17:06:19 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			get_data(char **argv, t_env *env);
 ** ADDITIONAL FONCTIONS
 */
 
+t_content	*new_elem(t_content *content, char *str);
 void		*ft_memalloc(size_t size);
 void		*ft_memset(void *b, int c, size_t len);
 char		*ft_strchr(const char *s, int c);

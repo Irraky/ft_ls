@@ -6,12 +6,11 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 13:44:34 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/20 16:41:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/20 17:06:15 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "new_elem.c"
 
 void		sort_alpha(char **arg)
 {
