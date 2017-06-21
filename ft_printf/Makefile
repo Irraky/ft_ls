@@ -6,7 +6,7 @@
 #    By: drecours <drecours@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:12:36 by drecours          #+#    #+#              #
-#    Updated: 2017/06/21 17:01:32 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/21 19:13:15 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC = ft_atoi.c \
 	  convpart4.c \
 	  convpart5.c \
 	  convpart6.c \
-	  get_data.c \
+	  get_d.c \
 	  convert.c \
 	  flagspart1.c
 
