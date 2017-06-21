@@ -6,38 +6,39 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/06/21 16:07:25 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/21 17:01:11 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_ls.a
+NAME = ft_ls
 FLAGS = -Wall -Werror -Wextra
 PRINTF_DIR=ft_printf
 SRC = details.c \
 	  ft_memalloc.c \
 	  ft_memset.c \
 	  ft_strchr.c \
+	  ft_strcmp.c \
 	  get_data.c \
 	  my_ls.c \
 	  manage_args.c \
 	  new_elem.c 
 
 OBJ = $(SRC:.c=.o)
+CC = gcc
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-	(cd $(PRINTF_DIR) && $(MAKE))
+	make -C ft_printf/
+	$(CC) $(FLAGS) -o $(NAME) $(SRC) ft_printf/libftprintf.a
 
 clean:
 	rm -f $(OBJ)
-	(cd $(PRINTF_DIR) && $(MAKE) $@)
-
+	make -C ft_printf clean
+	
 fclean: clean
 	rm -rf $(NAME)
-	(cd $(PRINTF_DIR) && $(MAKE) $@)
+	rm -rf ft_printf/libftprintf.a
 
 re: fclean all
 
