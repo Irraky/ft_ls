@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/17 12:00:55 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:04:36 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		putnwchar(const wchar_t *str, t_env *env)
+static void		putnwchar(const wchar_t *str, t_e *env)
 {
 	int					printed;
 	int					i;
@@ -27,7 +27,7 @@ static void		putnwchar(const wchar_t *str, t_env *env)
 	}
 }
 
-static int		lgs(t_env *env, const wchar_t *str)
+static int		lgs(t_e *env, const wchar_t *str)
 {
 	int					i;
 	int					size;
@@ -41,7 +41,7 @@ static int		lgs(t_env *env, const wchar_t *str)
 	return (env->conv.champ - size);
 }
 
-void			convgs(va_list args, t_env *env)
+void			convgs(va_list args, t_e *env)
 {
 	const wchar_t		*str = va_arg(args, wchar_t *);
 	int					i;
@@ -68,7 +68,7 @@ void			convgs(va_list args, t_env *env)
 	}
 }
 
-void			convgc(va_list args, t_env *env)
+void			convgc(va_list args, t_e *env)
 {
 	int					i;
 	const wchar_t		s = va_arg(args, wchar_t);

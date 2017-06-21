@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 17:13:35 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:05:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		convxplus(t_env *env, int i)
+static void		convxplus(t_e *env, int i)
 {
 	if (env->conv.sharp == 1 && env->conv.nb[0] != '0' && env->conv.zero == 1)
 		ft_putinit(env, (env->conv.conversion == 10) ? "0X" : "0x", -1);
@@ -32,7 +32,7 @@ static void		convxplus(t_env *env, int i)
 		ft_putinit(env, env->conv.nb, -1);
 }
 
-void			convx(va_list args, t_env *env)
+void			convx(va_list args, t_e *env)
 {
 	int		i;
 
@@ -58,12 +58,12 @@ void			convx(va_list args, t_env *env)
 		convxplus(env, i);
 }
 
-void			convgx(va_list args, t_env *env)
+void			convgx(va_list args, t_e *env)
 {
 	convx(args, env);
 }
 
-void			convp(va_list args, t_env *env)
+void			convp(va_list args, t_e *env)
 {
 	int		i;
 

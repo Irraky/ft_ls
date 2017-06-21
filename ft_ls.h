@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/20 17:06:19 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:55:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <stdio.h>
+#include "ft_printf/libftprintf.h"
 
 # define WRONG_FLAG -1
 

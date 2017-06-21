@@ -6,11 +6,12 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/16 13:43:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:45:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include <unistd.h>
 
 static int			compare_flags(char *str, t_env *env)
 {
@@ -21,8 +22,7 @@ static int			compare_flags(char *str, t_env *env)
 	while (*str++)
 		if (!ft_strchr(flags, *str))
 		{
-			ft_printf("ft_ls : illegal option -- %c\n%s", *str,
-					"usage: ft_ls [Ralrt] [file...]");
+			printf("ft_ls : illegal option -- %s", "usage: ft_ls [Ralrt] [file...]");
 			return (WRONG_FLAG);
 		}
 		else if (!ft_strchr(env->flag, *str))
@@ -34,14 +34,14 @@ int			get_data(char **argv, t_env *env)
 {
 	int		i;
 
-	i = 1;
+	i = 0;
 	if (argv[1])
 	{
-		while (argv[i] && argv[i][0] == '-')
+		while (argv[++i])
 		{
+			write(1, "test\n", 5);
 			if (compare_flags(argv[i], env) == WRONG_FLAG)
 				return (WRONG_FLAG);
-			i++;
 		}
 	}
 	return (1);

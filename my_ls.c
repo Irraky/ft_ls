@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/16 13:42:26 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:39:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void			destroy_env(t_env *env)
 int		main(int argc, char **argv)
 {
 	t_env env;
+	(void)argc;
 //	struct dirent *lecture;
 //	struct	stat fichier;
 //	DIR *rep;
@@ -32,9 +33,10 @@ int		main(int argc, char **argv)
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
-		//ft_printf("%s", env.flag);
+		ft_printf("COIN", env.flag);
 		manage_args(argv, argc, &env);
 	}
+		ft_printf("COIN", env.flag);
 	//print_data;
 //	destroy_env(&env);
 //	lecture = readdir(rep);

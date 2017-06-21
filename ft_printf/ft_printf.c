@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 16:52:40 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:01:09 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int					ft_printf(const char *format, ...)
 		ft_putinit(&env, (char *)&format[env.i], env.indexstr - env.i);
 		if (format[env.indexstr] == '%')
 		{
-			get_data(&env, format, args);
+			get_d(&env, format, args);
 			if (env.conv.conversion != 15)
 				tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);

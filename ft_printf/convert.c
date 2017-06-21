@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:02:52 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/17 12:00:33 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:03:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	convitoabase(va_list args, t_env *env, int base)
+void	convitoabase(va_list args, t_e *env, int base)
 {
 	int		i;
 
@@ -40,7 +40,7 @@ void	convitoabase(va_list args, t_env *env, int base)
 			env->conv.nb[i] = env->conv.nbp[i];
 }
 
-void	convitoa(va_list args, t_env *env)
+void	convitoa(va_list args, t_e *env)
 {
 	long long d;
 

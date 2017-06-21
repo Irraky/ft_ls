@@ -6,12 +6,12 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/06/21 17:01:11 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/21 18:49:01 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 PRINTF_DIR=ft_printf
 SRC = details.c \
 	  ft_memalloc.c \
@@ -34,7 +34,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -f $(OBJ)
-	make -C ft_printf clean
+	make -C ft_printf $@
 	
 fclean: clean
 	rm -rf $(NAME)
