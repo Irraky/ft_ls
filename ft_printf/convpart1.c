@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:15:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/17 11:58:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void			convuplus(t_envpf *env)
+static void			convuplus(t_env *env)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ static void			convuplus(t_envpf *env)
 		ft_putinit(env, env->conv.nb, -1);
 }
 
-void				convu(va_list args, t_envpf *env)
+void				convu(va_list args, t_env *env)
 {
 	int		i;
 
@@ -58,7 +58,7 @@ void				convu(va_list args, t_envpf *env)
 		convuplus(env);
 }
 
-static void			convguplus(t_envpf *env)
+static void			convguplus(t_env *env)
 {
 	int		i;
 
@@ -82,7 +82,7 @@ static void			convguplus(t_envpf *env)
 		ft_putinit(env, env->conv.nb, -1);
 }
 
-void				convgu(va_list args, t_envpf *env)
+void				convgu(va_list args, t_env *env)
 {
 	int		i;
 

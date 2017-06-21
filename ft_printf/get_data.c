@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:20:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:51:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		get_features(t_envpf *env, const char *format, int i, va_list arg)
+static void		get_features(t_env *env, const char *format, int i, va_list arg)
 {
 	if (env->conv.conversion != 15)
 		env->indexstr = env->indexstr + i + 1;
@@ -23,7 +23,7 @@ static void		get_features(t_envpf *env, const char *format, int i, va_list arg)
 	littleflags(env, format);
 }
 
-static int		get_conv(t_envpf *env, int j, int i, const char *format)
+static int		get_conv(t_env *env, int j, int i, const char *format)
 {
 	env->conv.conversion = j;
 	if (format[env->indexstr + i - 1] == 'l')
@@ -47,7 +47,7 @@ static int		get_conv(t_envpf *env, int j, int i, const char *format)
 	return (1);
 }
 
-void			data(t_envpf *env, const char *format, va_list arg)
+void			get_data(t_env *env, const char *format, va_list arg)
 {
 	int			i;
 	int			j;

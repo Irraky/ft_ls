@@ -6,13 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 14:15:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/12 11:17:32 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/17 11:50:53 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		convoplus(t_envpf *env)
+static void		convoplus(t_env *env)
 {
 	int		i;
 
@@ -39,7 +39,7 @@ static void		convoplus(t_envpf *env)
 		ft_putinit(env, env->conv.nb, -1);
 }
 
-void			convo(va_list args, t_envpf *env)
+void			convo(va_list args, t_env *env)
 {
 	int		i;
 
@@ -68,7 +68,7 @@ void			convo(va_list args, t_envpf *env)
 		convoplus(env);
 }
 
-void			convgo(va_list args, t_envpf *env)
+void			convgo(va_list args, t_env *env)
 {
 	ft_itoa_base(va_arg(args, long int), 8, env->conv.nb);
 	convo(args, env);
