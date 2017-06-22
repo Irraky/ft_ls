@@ -6,13 +6,12 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/06/21 18:49:01 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/21 19:19:49 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 FLAGS = -g -Wall -Werror -Wextra
-PRINTF_DIR=ft_printf
 SRC = details.c \
 	  ft_memalloc.c \
 	  ft_memset.c \

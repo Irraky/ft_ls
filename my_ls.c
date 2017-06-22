@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/21 18:39:43 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:20:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ int		main(int argc, char **argv)
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
-		ft_printf("COIN", env.flag);
 		manage_args(argv, argc, &env);
 	}
-		ft_printf("COIN", env.flag);
 	//print_data;
 //	destroy_env(&env);
 //	lecture = readdir(rep);
