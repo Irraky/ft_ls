@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/21 18:55:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/23 17:32:44 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct				s_content
 {
 	char					*name;
+	struct stat				*buff;
 	struct s_content		*next;
 //	struct s_content		*prev;
 }							t_content;
