@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_elem.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 16:56:03 by drecours         ###   ########.fr       */
+/*   Created: 2016/11/21 11:24:56 by drecours          #+#    #+#             */
+/*   Updated: 2017/06/26 16:27:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_content	*new_elem(t_content *content, char *str)
+char	*ft_strdup(const char *s1)
 {
-	t_content *new = ft_memalloc(sizeof(t_content));
+	int		i;
+	int		len;
+	char	*truc;
 
-	new->buff = (struct stat*)ft_memalloc(sizeof(struct stat));
-	new->name = ft_strdup(str);
-	lstat(str, new->buff);
-	new->next = content;
-	return (new);
+	i = -1;
+	len = ft_strlen(s1);
+	if (!(truc = ft_memalloc(sizeof(char) * len + 1)))
+		return (0);
+	while (i++ != len)
+		truc[i] = s1[i];
+	truc[i] = '\0';
+	return (truc);
 }

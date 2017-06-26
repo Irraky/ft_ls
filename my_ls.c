@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/21 19:20:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/26 14:25:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,22 @@ static void			destroy_env(t_env *env)
 */
 int		main(int argc, char **argv)
 {
-	t_env env;
-	(void)argc;
+	t_env		env;
+	t_content	*content;
+	t_dir		*dir;
 //	struct dirent *lecture;
 //	struct	stat fichier;
 //	DIR *rep;
 //	rep = opendir(".");
+	dir = ft_memalloc(sizeof(t_dir));
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
-		manage_args(argv, argc, &env);
+		content = parsing_args(argv, argc, &env);
+//		sort_args(content);
+		dir = display_file(content, dir);
+
+		//manage_list(list);
 	}
 	//print_data;
 //	destroy_env(&env);

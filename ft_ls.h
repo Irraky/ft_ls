@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/23 17:32:44 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/26 18:51:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <stdio.h>
+#include <time.h>
 #include "ft_printf/libftprintf.h"
 
 # define WRONG_FLAG -1
@@ -30,22 +31,20 @@ typedef struct				s_content
 	char					*name;
 	struct stat				*buff;
 	struct s_content		*next;
-//	struct s_content		*prev;
 }							t_content;
 
 typedef struct				s_dir
 {
 	char					*name;
 	struct s_dir			*next;
-	struct s_dir			*prev;
 }							t_dir;
-
+/*
 typedef struct				s_list
 {
 	t_dir					*start;
-	t_content				*firstname;
+	t_content				*lname;
 }							t_list;
-
+*/
 typedef struct				s_env
 {
 	int						pflag;
@@ -57,17 +56,21 @@ typedef struct				s_env
 ** FT_LS FUNCTIONS
 */
 
-void		manage_args(char **arg, int arc, t_env *env);
-void		details(char *str, struct stat buf);
+t_content	*parsing_args(char **arg, int arc, t_env *env);
+void		details(t_content *content);
 int			get_data(char **argv, t_env *env);
+t_dir		*display_file(t_content *content, t_dir *dir);
 /*
 ** ADDITIONAL FONCTIONS
 */
 
+t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *str);
+int			ft_printf(const char *format, ...);
+
 void		*ft_memalloc(size_t size);
 void		*ft_memset(void *b, int c, size_t len);
 char		*ft_strchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
-int			ft_printf(const char *format, ...);
+char		*ft_strdup(const char *s1);
 #endif

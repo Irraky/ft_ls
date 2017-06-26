@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/16 13:38:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/26 19:27:25 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,20 @@ static void			rights(mode_t x)
 	ft_printf((S_IXOTH & x) ? "x" : "-");
 }
 
-void				details(char *str, struct stat buf)
+void				details(t_content *content)
 {
 	struct passwd *pwd;
 	struct group *grp;
 
-	(void)str;
-	type(buf.st_mode);
-	rights(buf.st_mode);
+	type(content->buff->st_mode);
+	rights(content->buff->st_mode);
 	//details -> @ / +
-	ft_printf("%*ld", 4, buf.st_nlink);
-	if ((pwd = getpwuid(buf.st_uid)) != NULL)
+	ft_printf("%*ld", 4, content->buff->st_nlink);
+	if ((pwd = getpwuid(content->buff->st_uid)) != NULL)
 		ft_printf(" %s ", pwd->pw_name);
-	if ((grp = getgrgid(buf.st_gid)) != NULL)
+	if ((grp = getgrgid(content->buff->st_gid)) != NULL)
 		ft_printf("%s", grp->gr_name);
-	ft_printf(" %llu\n", buf.st_size);
+	ft_printf(" %llu", content->buff->st_size);
+	ft_printf(" %.12s", &ctime(&content->buff->st_atime)[4]);
+	ft_printf(" %s\n", content->name);
 }

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_elem.c                                         :+:      :+:    :+:   */
+/*   new_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 16:56:03 by drecours         ###   ########.fr       */
+/*   Created: 2017/06/26 15:03:15 by drecours          #+#    #+#             */
+/*   Updated: 2017/06/26 17:23:01 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_content	*new_elem(t_content *content, char *str)
+t_dir		*new_node(t_dir *dir, char *str)
 {
-	t_content *new = ft_memalloc(sizeof(t_content));
+	t_dir	*new;
 
-	new->buff = (struct stat*)ft_memalloc(sizeof(struct stat));
+	new = ft_memalloc(sizeof(t_content));
 	new->name = ft_strdup(str);
-	lstat(str, new->buff);
-	new->next = content;
+	new->next = dir;
 	return (new);
 }

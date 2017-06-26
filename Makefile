@@ -6,7 +6,7 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/06/21 19:19:49 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/26 16:29:24 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ SRC = details.c \
 	  get_data.c \
 	  my_ls.c \
 	  manage_args.c \
-	  new_elem.c 
+	  new_elem.c \
+	  display_file.c \
+	  new_node.c \
+	  ft_strdup.c
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
