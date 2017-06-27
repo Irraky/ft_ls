@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 18:22:34 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/27 13:32:36 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_content		*sort_type(char **arg, t_content *content)
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
-			ft_printf("ls: %s: ", arg[i]);
-			perror("");
+			write(2, "ls: ", 4);
+			perror(arg[i]);
 		}
 	i = -1;
 	while (arg[++i])
@@ -69,11 +69,5 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
 	content = sort_type(&arg[begin], content);
-	/*while (content->name != NULL)
-	{
-		if (!S_ISDIR(content->buff->st_mode))
-			ft_printf("\nvalid : %s\n", content->name);
-		content = content->next;
-	}*/
 	return (content);
 }

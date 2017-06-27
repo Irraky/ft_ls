@@ -6,7 +6,7 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/06/26 16:29:24 by drecours         ###   ########.fr        #
+#    Updated: 2017/06/27 16:22:19 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = details.c \
 	  ft_strchr.c \
 	  ft_strcmp.c \
 	  get_data.c \
+	  load_balance.c \
 	  my_ls.c \
 	  manage_args.c \
 	  new_elem.c \

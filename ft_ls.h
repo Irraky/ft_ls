@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 18:51:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:22:00 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ t_content	*parsing_args(char **arg, int arc, t_env *env);
 void		details(t_content *content);
 int			get_data(char **argv, t_env *env);
 t_dir		*display_file(t_content *content, t_dir *dir);
+void		load_balance(t_dir *dir);
 /*
 ** ADDITIONAL FONCTIONS
 */
 
 t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *str);
+void		clean(t_content *content);
 int			ft_printf(const char *format, ...);
 
 void		*ft_memalloc(size_t size);

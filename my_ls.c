@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 14:25:46 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:09:24 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		main(int argc, char **argv)
 	t_env		env;
 	t_content	*content;
 	t_dir		*dir;
+	t_dir		*di;
 //	struct dirent *lecture;
 //	struct	stat fichier;
 //	DIR *rep;
@@ -38,7 +39,14 @@ int		main(int argc, char **argv)
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
 		dir = display_file(content, dir);
-
+		load_balance(dir);
+		/*while (dir != NULL)
+		{
+			di = dir;
+			dir = dir->next;
+			free(di->name);
+			free(di);
+		}*/
 		//manage_list(list);
 	}
 	//print_data;
@@ -59,5 +67,6 @@ int		main(int argc, char **argv)
 		//}
 	}*/
 //	closedir(rep);
+	while (1);
 	return (0);
 }

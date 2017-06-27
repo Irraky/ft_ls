@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 18:17:12 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/27 14:39:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,11 @@ t_dir		*display_file(t_content *content, t_dir *dir)
 		if (content->buff && !(S_ISDIR(content->buff->st_mode)))
 			details(content);
 		else
-			nw = new_node(nw, content->name);
+		nw = new_node(nw, content->name);
 		tmp = content;
-		clean(tmp);
 		content = content->next;
+		clean(tmp);
 	}
-	while (nw != NULL && nw->name != NULL)
-	{
-		printf("%s\n", nw->name);
-		nw = nw->next;
-	}
+	free(content);
 	return (nw);
 }

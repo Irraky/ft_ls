@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/21 19:40:34 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/27 14:02:21 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static int			compare_flags(char *str, t_env *env)
 	while (*str++)
 		if (!ft_strchr(flags, *str))
 		{
-			ft_printf("ft_ls : illegal option -- %c\n%s", *str,
-					"usage: ft_ls [Ralrt] [file...]");
+			write(2, "ft_ls : illegal option -- ", 26);
+			write(2, &*str, 1);
+			write(2, "\nusage: ft_ls [Ralrt] [file...]\n", 32);
 			return (WRONG_FLAG);
 		}
 		else if (!ft_strchr(env->flag, *str))
@@ -39,6 +40,8 @@ int			get_data(char **argv, t_env *env)
 	{
 		while (argv[++i] && argv[i][0] == '-')
 		{
+			if (argv[i][1] == '-')
+				break;
 			if (compare_flags(argv[i], env) == WRONG_FLAG)
 				return (WRONG_FLAG);
 		}
