@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/27 14:39:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/29 14:17:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void		clean(t_content		*content)
 
 t_dir		*display_file(t_content *content, t_dir *dir)
 {
-	t_dir		*nw;
+	t_dir		*new;
 	t_content	*tmp;
 	
-	nw = ft_memalloc(sizeof(t_dir));
-	nw->next = dir;
+	new = ft_memalloc(sizeof(t_dir));
+	new->next = dir;
 	while (content->name != NULL)
 	{
 		if (content->buff && !(S_ISDIR(content->buff->st_mode)))
 			details(content);
 		else
-		nw = new_node(nw, content->name);
+			new = new_node(new, content->name);
 		tmp = content;
 		content = content->next;
 		clean(tmp);
 	}
 	free(content);
-	return (nw);
+	return (new);
 }

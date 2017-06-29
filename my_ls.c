@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/27 18:09:24 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:08:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,21 @@ int		main(int argc, char **argv)
 	t_env		env;
 	t_content	*content;
 	t_dir		*dir;
-	t_dir		*di;
+//	t_dir		*tmp;
+	//t_dir		*di;
 //	struct dirent *lecture;
 //	struct	stat fichier;
 //	DIR *rep;
 //	rep = opendir(".");
 	dir = ft_memalloc(sizeof(t_dir));
+	//tmp = dir;
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
 		dir = display_file(content, dir);
-		load_balance(dir);
+		load_balance(dir, &env);
 		/*while (dir != NULL)
 		{
 			di = dir;
@@ -49,6 +51,8 @@ int		main(int argc, char **argv)
 		}*/
 		//manage_list(list);
 	}
+//	free(tmp->name);
+//	free(tmp);
 	//print_data;
 //	destroy_env(&env);
 //	lecture = readdir(rep);
