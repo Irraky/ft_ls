@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:06:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/29 13:59:37 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:19:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_dir		*clean_it(t_dir *dir)
 
 	tmp = dir;
 	dir = dir->next;
-	//printf("|%s|", tmp->name);
 	free(tmp->name);
 	free(tmp);
 	return (dir);
@@ -28,11 +27,14 @@ void		load_balance(t_dir *dir, t_env *env)
 {
 	int		r;
 
-	r = (ft_strchr(env->flag, 'r') != NULL) ? 1 : 0;
+	r = (ft_strchr(env->flag, 'R') != NULL) ? 1 : 0;
 	if (r == 0)
-		ft_printf("%s\n", dir->name);
-
-	dir = clean_it(dir);
+	{
+		details(dir->name, env);
+		dir = clean_it(dir);
+	}
+	else
+		manage_dir(dir, env);
 	if (dir->name != NULL)
 		load_balance(dir, env);
 }

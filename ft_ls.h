@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/29 13:54:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:15:09 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,19 @@ typedef struct				s_env
 */
 
 t_content	*parsing_args(char **arg, int arc, t_env *env);
-void		details(t_content *content);
+void		details(char *name, t_env *env);
 int			get_data(char **argv, t_env *env);
-t_dir		*display_file(t_content *content, t_dir *dir);
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env);
 void		load_balance(t_dir *dir, t_env *env);
+t_dir		*manage_dir(t_dir *dir, t_env *env);
 /*
 ** ADDITIONAL FONCTIONS
 */
 
 t_dir		*new_node(t_dir *dir, char *str);
-t_content	*new_elem(t_content *content, char *str);
+t_content	*new_elem(t_content *content, char *str, char *str2);
 void		clean(t_content *content);
+t_dir		*clean_it(t_dir *dir);
 int			ft_printf(const char *format, ...);
 
 void		*ft_memalloc(size_t size);
@@ -75,4 +77,5 @@ void		*ft_memset(void *b, int c, size_t len);
 char		*ft_strchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strdup(const char *s1);
+char		*ft_joinfree(char const *s1, char const *s2, int nb);
 #endif

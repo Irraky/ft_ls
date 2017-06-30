@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/29 16:08:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:16:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
-		dir = display_file(content, dir);
+		dir = display_file(content, dir, &env);
 		load_balance(dir, &env);
 		/*while (dir != NULL)
 		{

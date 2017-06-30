@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 19:27:25 by drecours         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:19:29 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,25 @@ static void			rights(mode_t x)
 	ft_printf((S_IXOTH & x) ? "x" : "-");
 }
 
-void				details(t_content *content)
+void				details(char *name, t_env *env)
 {
-	struct passwd *pwd;
-	struct group *grp;
+	struct passwd	*pwd;
+	struct group	*grp;
+	struct stat		buff;
 
-	type(content->buff->st_mode);
-	rights(content->buff->st_mode);
+	lstat(name, &buff);
 	//details -> @ / +
-	ft_printf("%*ld", 4, content->buff->st_nlink);
-	if ((pwd = getpwuid(content->buff->st_uid)) != NULL)
-		ft_printf(" %s ", pwd->pw_name);
-	if ((grp = getgrgid(content->buff->st_gid)) != NULL)
-		ft_printf("%s", grp->gr_name);
-	ft_printf(" %llu", content->buff->st_size);
-	ft_printf(" %.12s", &ctime(&content->buff->st_atime)[4]);
-	ft_printf(" %s\n", content->name);
+	if (ft_strchr(env->flag, 'l'))
+	{
+		type(buff.st_mode);
+		rights(buff.st_mode);
+		ft_printf("%*ld", 4, buff.st_nlink);
+		if ((pwd = getpwuid(buff.st_uid)) != NULL)
+			ft_printf(" %s ", pwd->pw_name);
+		if ((grp = getgrgid(buff.st_gid)) != NULL)
+			ft_printf("%s", grp->gr_name);
+		ft_printf(" %llu", buff.st_size);
+		ft_printf(" %.12s", &ctime(&buff.st_atime)[4]);
+	}
+	ft_printf(" %s\n", name);
 }
