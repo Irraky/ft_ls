@@ -12,13 +12,18 @@
 
 #include "ft_ls.h"
 
-t_content	*new_elem(t_content *content, char *str)
+t_content	*new_elem(t_content *content, char *str, char *path)
 {
+	char	*tmp;
 	t_content *new = ft_memalloc(sizeof(t_content));
 
+	tmp = ft_joinfree(path, "/", 0);
+	tmp = ft_joinfree(tmp, str, 1);
 	new->buff = (struct stat*)ft_memalloc(sizeof(struct stat));
-	lstat(str, new->buff);
+		lstat(tmp, new->buff);
 	new->name = ft_strdup(str);
+	ft_printf("\n|||%s|||\n", new->name);
 	new->next = content;
+	free(tmp);
 	return (new);
 }

@@ -30,10 +30,10 @@ void		manage_dir(t_dir *dir, t_env *env)
 	fichierLu = readdir(rep);
 	while ((fichierLu = readdir(rep)) != NULL)
 		if (!(fichierLu->d_name[0] == '.' && a == 0))
-			content = new_elem(content, fichierLu->d_name);
+			content = new_elem(content, fichierLu->d_name, dir->name);
 	dir = display_file(content, dir, env, 0);
 	if (closedir(rep) == -1)
 		exit(-1);
-	if (dir->name != NULL)
+	if (dir->next != NULL)
 		manage_dir(dir, env);
 }

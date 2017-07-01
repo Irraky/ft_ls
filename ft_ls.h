@@ -59,14 +59,14 @@ typedef struct				s_env
 t_content	*parsing_args(char **arg, int arc, t_env *env);
 void		details(char *name, t_env *env);
 int			get_data(char **argv, t_env *env);
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int star);
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
 void		manage_dir(t_dir *dir, t_env *env);
 /*
 ** ADDITIONAL FONCTIONS
 */
 
 t_dir		*new_node(t_dir *dir, char *str, char *str2, int start);
-t_content	*new_elem(t_content *content, char *str);
+t_content	*new_elem(t_content *content, char *str, char *path);
 void		clean(t_content *content);
 t_dir		*clean_it(t_dir *dir);
 int			ft_printf(const char *format, ...);

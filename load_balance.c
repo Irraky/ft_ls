@@ -17,8 +17,11 @@ t_dir		*clean_it(t_dir *dir)
 	t_dir		*tmp;
 
 	tmp = dir;
-	dir = dir->next;
-	free(tmp->name);
-	free(tmp);
+	if (dir->next != NULL)
+	{
+		dir = dir->next;
+		free(tmp->name);
+		free(tmp);
+	}
 	return (dir);
 }

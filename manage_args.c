@@ -38,7 +38,7 @@ t_content		*sort_type(char **arg, t_content *content)
 
 	i = -1;
 	if (arg[0] == NULL)
-		content = new_elem(content, ".");
+		content = new_elem(content, ".", "");
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
@@ -48,17 +48,15 @@ t_content		*sort_type(char **arg, t_content *content)
 	i = -1;
 	while (arg[++i])
 		if (lstat(arg[i], &buf) != -1)
-			content = new_elem(content, arg[i]);
+			content = new_elem(content, arg[i], "");
 	return (content);
 }
 
 t_content		*parsing_args(char **arg, int arc, t_env *env)
 {
-	int			i;
 	int			begin;
 	t_content	*content;
 
-	i = 0;
 	begin = 1;
 	content = ft_memalloc(sizeof(t_content));
 	if (arc > 1)

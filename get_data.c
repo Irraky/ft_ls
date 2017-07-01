@@ -15,9 +15,7 @@
 static int			compare_flags(char *str, t_env *env)
 {
 	const char	*flags = "lRart";
-	int			i;
 
-	i = -1;
 	while (*str++)
 		if (!ft_strchr(flags, *str))
 		{

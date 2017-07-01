@@ -41,7 +41,8 @@ int		main(int argc, char **argv)
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
 		dir = display_file(content, dir, &env, 1);
-		manage_dir(dir, &env);
+		if (dir != NULL)
+			manage_dir(dir, &env);
 		/*while (dir != NULL)
 		{
 			di = dir;
@@ -71,6 +72,6 @@ int		main(int argc, char **argv)
 		//}
 	}*/
 //	closedir(rep);
-	while (1);
+//	while (1);
 	return (0);
 }
