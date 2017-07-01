@@ -20,9 +20,8 @@ t_content	*new_elem(t_content *content, char *str, char *path)
 	tmp = ft_joinfree(path, "/", 0);
 	tmp = ft_joinfree(tmp, str, 1);
 	new->buff = (struct stat*)ft_memalloc(sizeof(struct stat));
-		lstat(tmp, new->buff);
+	lstat(tmp, new->buff);
 	new->name = ft_strdup(str);
-	ft_printf("\n|||%s|||\n", new->name);
 	new->next = content;
 	free(tmp);
 	return (new);
