@@ -22,19 +22,3 @@ t_dir		*clean_it(t_dir *dir)
 	free(tmp);
 	return (dir);
 }
-
-void		load_balance(t_dir *dir, t_env *env)
-{
-	int		r;
-
-	r = (ft_strchr(env->flag, 'R') != NULL) ? 1 : 0;
-	if (r == 0)
-	{
-		details(dir->name, env);
-		dir = clean_it(dir);
-	}
-	else
-		manage_dir(dir, env);
-	if (dir->name != NULL)
-		load_balance(dir, env);
-}

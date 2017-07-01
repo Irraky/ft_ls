@@ -12,12 +12,18 @@
 
 #include "ft_ls.h"
 
-t_dir		*new_node(t_dir *dir, char *str)
+t_dir		*new_node(t_dir *dir, char *str, char *str2, int start)
 {
 	t_dir	*new;
 
 	new = ft_memalloc(sizeof(t_content));
-	new->name = ft_strdup(str);
-	new->next = dir;
+	if (str && start == 1)
+		new->name = ft_strdup(str);
+	else
+	{
+		new->name = ft_joinfree(str2, "/", 0);
+		new->name = ft_joinfree(new->name, str, 1);
+		new->next = dir;
+	}
 	return (new);
 }

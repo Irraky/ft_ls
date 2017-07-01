@@ -40,8 +40,8 @@ int		main(int argc, char **argv)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
-		dir = display_file(content, dir, &env);
-		load_balance(dir, &env);
+		dir = display_file(content, dir, &env, 1);
+		manage_dir(dir, &env);
 		/*while (dir != NULL)
 		{
 			di = dir;

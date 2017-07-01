@@ -19,16 +19,21 @@ void		clean(t_content		*content)
 	free(content);
 }
 
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env)
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 {
-	t_content	*tmp;
+	t_content		*tmp;
+	int				r;
+	const char		*dnam = dir->name;
 	
-	while (content->name != NULL)
+	dir = clean_it(dir);
+	r = (!(ft_strchr(env->flag, 'R') == NULL)) ? 1 : 0;
+	while (content != NULL && content->name != NULL)
 	{
-		if (content->buff && !(S_ISDIR(content->buff->st_mode)))
+		if ((content->buff && !(S_ISDIR(content->buff->st_mode) && (r == 0 || start == 1))) ||
+				(content->buff && ft_strchr(&content->name[1], '.') && ft_strchr(env->flag, 'a')))
 			details(content->name, env);
-		else
-			dir = new_node(dir, content->name);
+		else if (!ft_strchr(&content->name[1], '.') && (r == 1 || start == 1))
+			dir = new_node(dir, content->name, (char*)dnam, start);
 		tmp = content;
 		content = content->next;
 		clean(tmp);

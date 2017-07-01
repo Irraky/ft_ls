@@ -38,7 +38,7 @@ t_content		*sort_type(char **arg, t_content *content)
 
 	i = -1;
 	if (arg[0] == NULL)
-		content = new_elem(content, ".", "");
+		content = new_elem(content, ".");
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
@@ -48,7 +48,7 @@ t_content		*sort_type(char **arg, t_content *content)
 	i = -1;
 	while (arg[++i])
 		if (lstat(arg[i], &buf) != -1)
-			content = new_elem(content, arg[i], "");
+			content = new_elem(content, arg[i]);
 	return (content);
 }
 
