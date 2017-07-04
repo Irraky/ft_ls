@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/30 16:15:09 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/04 16:37:58 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #include "ft_printf/libftprintf.h"
 
 # define WRONG_FLAG -1
+# define TRUE 1
+# define FALSE 0
 
 typedef struct				s_content
 {
@@ -45,10 +47,20 @@ typedef struct				s_list
 	t_content				*lname;
 }							t_list;
 */
+
+typedef struct				s_flag
+{
+	unsigned				flag_rmaj : 1;
+	unsigned				flag_a : 1;
+	unsigned				flag_l : 1;
+	unsigned				flag_r : 1;
+	unsigned				flag_t : 1;
+}							t_flag;
+
 typedef struct				s_env
 {
+	t_flag					flag;
 	int						pflag;
-	char					flag[6];
 	int						flagname;
 }							t_env;
 

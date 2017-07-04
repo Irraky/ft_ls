@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 15:03:15 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/26 17:23:01 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/04 14:09:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_dir		*new_node(t_dir *dir, char *str, char *str2, int start)
 		new->name = ft_joinfree(new->name, str, 1);
 		new->next = dir;
 	}
+	ft_printf("I%sI", new->name);
 	return (new);
 }

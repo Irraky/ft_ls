@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/30 16:16:03 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/04 17:14:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ static void			init_env(t_env *env)
 {
 	env->pflag = 0;
 	env->flagname = 0;
+	env->flag = (t_flag){0, 0, 0, 0, 0};
 }
-/*
-static void			destroy_env(t_env *env)
-{
-}
-*/
+
 int		main(int argc, char **argv)
 {
 	t_env		env;
@@ -40,6 +37,7 @@ int		main(int argc, char **argv)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
+		ft_printf("|%s|", content->name);
 		dir = display_file(content, dir, &env, 1);
 		if (dir != NULL)
 			manage_dir(dir, &env);
@@ -55,7 +53,6 @@ int		main(int argc, char **argv)
 //	free(tmp->name);
 //	free(tmp);
 	//print_data;
-//	destroy_env(&env);
 //	lecture = readdir(rep);
 //	display_details(lecture);
 /*	while ((lecture = readdir(rep))) 
