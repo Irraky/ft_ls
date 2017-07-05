@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/04 17:14:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/05 13:24:11 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void			init_env(t_env *env)
 {
 	env->pflag = 0;
 	env->flagname = 0;
-	env->flag = (t_flag){0, 0, 0, 0, 0};
 }
 
 int		main(int argc, char **argv)

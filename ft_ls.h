@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/04 16:37:58 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/05 13:18:29 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,9 @@ typedef struct				s_list
 }							t_list;
 */
 
-typedef struct				s_flag
-{
-	unsigned				flag_rmaj : 1;
-	unsigned				flag_a : 1;
-	unsigned				flag_l : 1;
-	unsigned				flag_r : 1;
-	unsigned				flag_t : 1;
-}							t_flag;
-
 typedef struct				s_env
 {
-	t_flag					flag;
+	char					flag[6];
 	int						pflag;
 	int						flagname;
 }							t_env;
