@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/05 13:24:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:16:30 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
-		ft_printf("|%s|", content->name);
+		ft_printf("|%o|", content->buff->st_mode);
 		dir = display_file(content, dir, &env, 1);
 		if (dir != NULL)
 			manage_dir(dir, &env);
