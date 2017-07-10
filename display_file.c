@@ -6,26 +6,32 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 13:37:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 14:56:23 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		clean(t_content		*content)
+t_content		*clean(t_content *content)
 {
-	if (content->name)
-		free(content->name);
-	if (content->path)
-		free(content->path);
-	if (content->buff)
-		free(content->buff);
-	if (content)
-		free(content);
+	t_content		*tmp;
+
+	tmp = content;
+	if (content->next)
+	content = content->next;
+	if (tmp != NULL)
+	{
+		free(tmp->name);
+		free(tmp->path);
+		free(tmp->buff);
+		free(tmp);
+	}
+	return (content);
 }
 
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 {
+	dir = clean_it(dir);
 	if (start != 1)
 		dir = clean_it(dir);
 	while (content != NULL && content->name != NULL)

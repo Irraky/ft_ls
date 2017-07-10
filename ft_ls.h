@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 12:33:26 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 14:41:35 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		manage_dir(t_dir *dir, t_env *env);
 
 t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *str, char *path);
-void		clean(t_content *content);
+t_content	*clean(t_content *content);
 t_dir		*clean_it(t_dir *dir);
 int			ft_printf(const char *format, ...);
 
