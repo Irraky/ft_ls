@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 11:35:22 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 00:01:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		manage_dir(t_dir *dir, t_env *env)
 	while ((fichierLu = readdir(rep)) != NULL)
 		if (!(fichierLu->d_name[0] == '.' && a == 0))
 			content = new_elem(content, fichierLu->d_name, dir->name);
-	dir = display_file(content, dir, env, 0);
+		dir = display_file(content, dir, env, 0);
 	if (closedir(rep) == -1)
 		exit(-1);
 	if (dir->next != NULL)

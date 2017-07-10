@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 14:56:25 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 22:49:53 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_content	*new_elem(t_content *content, char *str, char *path)
 	char			*tmp;
 	struct stat		buf;
 	t_content		*new = ft_memalloc(sizeof(t_content));
-
 
 	if (path && path[0])
 	{
@@ -33,7 +32,8 @@ t_content	*new_elem(t_content *content, char *str, char *path)
 	lstat(tmp, &buf);
 	*new->buff = buf;
 	new->path = ft_strdup(tmp);
-	new->name = ft_strdup(str);
+	if (str)
+		new->name = ft_strdup(str);
 	new->next = content;
 	free(tmp);
 	return (new);

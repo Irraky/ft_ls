@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 14:56:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 00:01:49 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_content		*clean(t_content *content)
 	t_content		*tmp;
 
 	tmp = content;
-	if (content->next)
 	content = content->next;
 	if (tmp != NULL)
 	{
@@ -31,8 +30,7 @@ t_content		*clean(t_content *content)
 
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 {
-	dir = clean_it(dir);
-	if (start != 1)
+	if (dir != NULL && dir->name != NULL)
 		dir = clean_it(dir);
 	while (content != NULL && content->name != NULL)
 	{
