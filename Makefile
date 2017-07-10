@@ -6,7 +6,7 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/07/09 23:59:58 by drecours         ###   ########.fr        #
+#    Updated: 2017/07/10 21:57:27 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = details.c \
 	  get_data.c \
 	  clean_it.c \
 	  my_ls.c \
-	  manage_args.c \
+	  parsing_args.c \
 	  new_elem.c \
 	  display_file.c \
 	  new_node.c \
