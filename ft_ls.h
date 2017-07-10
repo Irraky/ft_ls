@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/05 18:14:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 12:33:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@
 #include "ft_printf/libftprintf.h"
 
 # define WRONG_FLAG -1
-# define TRUE 1
-# define FALSE 0
 
 typedef struct				s_content
 {
 	char					*name;
+	char					*path;
 	struct stat				*buff;
 	struct s_content		*next;
 }							t_content;
@@ -53,6 +52,7 @@ typedef struct				s_env
 	char					flag[6];
 	int						pflag;
 	int						flagname;
+	int						start;
 }							t_env;
 
 /*
@@ -60,7 +60,7 @@ typedef struct				s_env
 */
 
 t_content	*parsing_args(char **arg, int arc, t_env *env);
-void		details(char *name, t_env *env);
+void		details(t_content *content, t_env *env);
 int			get_data(char **argv, t_env *env);
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
 void		manage_dir(t_dir *dir, t_env *env);
@@ -68,7 +68,7 @@ void		manage_dir(t_dir *dir, t_env *env);
 ** ADDITIONAL FONCTIONS
 */
 
-t_dir		*new_node(t_dir *dir, char *str, char *str2, int start);
+t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *str, char *path);
 void		clean(t_content *content);
 t_dir		*clean_it(t_dir *dir);

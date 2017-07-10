@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/30 16:01:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 13:37:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_content		*sort_type(char **arg, t_content *content)
 
 	i = -1;
 	if (arg[0] == NULL)
-		content = new_elem(content, ".", "");
+		content = new_elem(content, "\0", ".");
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
@@ -58,10 +58,16 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 	t_content	*content;
 
 	begin = 1;
+	content = NULL;
 	content = ft_memalloc(sizeof(t_content));
 	if (arc > 1)
-		while (arg[begin] && arg[begin][0] == '-')
-			begin++;
+		while (arg[begin])
+		{
+			if (arg[begin][0] == '-' && arg[begin][1] != '\0')
+				begin++;
+			else
+				break;
+		}
 	if (arc - begin == 1 || 0)
 		env->flagname = 1;
 	if (arg[begin] != NULL)

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/05 18:15:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/10 10:17:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			get_data(char **argv, t_env *env)
 	i = 0;
 	if (argv[1])
 	{
-		while (argv[++i] && argv[i][0] == '-')
+		while (argv[++i] && argv[i][0] == '-' && argv[i][1] != '\0')
 		{
 			if (argv[i][1] == '-')
 				break;
@@ -47,4 +47,3 @@ int			get_data(char **argv, t_env *env)
 	}
 	return (1);
 }
-	env->flag = (t_flag){0, 0, 0, 0, 0};
