@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 03:05:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 05:20:37 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_content		*sort_type(char **arg, t_content *content)
 		}
 	i = -1;
 	while (arg[++i])
-		if (lstat(arg[i], &buf) != -1 && ft_strcmp(arg[i], ".") && ft_strcmp(arg[i], ".."))
+		if (lstat(arg[i], &buf) != -1)
 			content = new_elem(content, arg[i], "");
 	return (content);
 }
