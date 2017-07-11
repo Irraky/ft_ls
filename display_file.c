@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 00:01:49 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 03:02:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_content		*clean(t_content *content)
 	content = content->next;
 	if (tmp != NULL)
 	{
-		free(tmp->name);
 		free(tmp->path);
 		free(tmp->buff);
 		free(tmp);
@@ -30,11 +29,17 @@ t_content		*clean(t_content *content)
 
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 {
-	if (dir != NULL && dir->name != NULL)
+	char	*name;
+
+	if (start != 1)
 		dir = clean_it(dir);
-	while (content != NULL && content->name != NULL)
+	while (content != NULL && content->path != NULL)
 	{
-		if (content->buff && (!((S_ISDIR(content->buff->st_mode)))))
+		if ((name = ft_strrchr(content->path, '/')) == NULL)
+			name = content->path;
+		if (content->buff && (!((S_ISDIR(content->buff->st_mode)) ||
+						(name[0] == '.' && name[1]  == '\0') ||
+						(name[1] == '.' && name[0] == '.' && name[2] == '\0'))))
 			details(content, env);
 		else if (content->buff && (env->flag[1] || start == 1))
 			dir = new_node(dir, content->path);

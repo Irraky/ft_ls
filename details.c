@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 00:01:46 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 01:59:17 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void				details(t_content *content, t_env *env)
 {
 	struct passwd	*pwd;
 	struct group	*grp;
+	char			*name;
 
 	//details -> @ / +
 	if (env->flag[0])
@@ -61,5 +62,8 @@ void				details(t_content *content, t_env *env)
 		ft_printf(" %llu", content->buff->st_size);
 		ft_printf(" %.12s ", &ctime(&content->buff->st_atime)[4]);
 	}
-	ft_printf("%s\n", content->name);
+	if ((name = ft_strrchr(content->path, '/')) == NULL)
+		ft_printf("%s\n", content->path);
+	else
+		ft_printf("%s\n", &name[1]);
 }

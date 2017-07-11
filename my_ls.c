@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 00:01:44 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 02:05:13 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ int		main(int argc, char **argv)
 	t_env		env;
 	t_content	*content;
 	t_dir		*dir;
-//	t_dir		*tmp;
-	//t_dir		*di;
-//	struct dirent *lecture;
-//	struct	stat fichier;
-//	DIR *rep;
-//	rep = opendir(".");
+
 	dir = NULL;
 	dir = ft_memalloc(sizeof(t_dir));
 	//tmp = dir;
@@ -38,36 +33,8 @@ int		main(int argc, char **argv)
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
 		dir = display_file(content, dir, &env, 1);
-		if (dir && dir->name)
+		if (dir && dir->dname)
 			manage_dir(dir, &env);
-		/*while (dir != NULL)
-		{
-			di = dir;
-			dir = dir->next;
-			free(di->name);
-			free(di);
-		}*/
-		//manage_list(list);
 	}
-//	free(tmp->name);
-//	free(tmp);
-	//print_data;
-//	lecture = readdir(rep);
-//	display_details(lecture);
-/*	while ((lecture = readdir(rep))) 
-	{
-		if (lecture->d_name[0] = '.' || env->a == 1)
-		info(lecture);
-		printf("%s", (lecture->d_name[0] == '.') ? "point point point\n" :
-				((lecture->d_name[0] == 'a') ? "a\n" : "normal\n"));
-		if (lecture->d_name[0] != '.' || env.a == 1)
-		{
-			printf("%s\n", lecture->d_name);
-			lstat(lecture->d_name, &fichier);
-			printf("     %o\n", fichier.st_mode);
-		//}
-	}*/
-//	closedir(rep);
-//	while (1);
 	return (0);
 }

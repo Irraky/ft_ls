@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:06:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/10 14:56:21 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 01:34:19 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_dir		*clean_it(t_dir *dir)
 	if (dir->next != NULL)
 	{
 		dir = dir->next;
-		free(tmp->name);
+		free(tmp->dname);
 		free(tmp);
 	}
 	return (dir);

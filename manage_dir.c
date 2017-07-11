@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 00:01:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/11 01:35:00 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ void		manage_dir(t_dir *dir, t_env *env)
 	t_content		*content;
 	DIR				*rep = NULL;
 	struct dirent	*fichierLu = NULL;
-	int				a;
 
-	ft_printf("\n%s:\n", dir->name);
-	rep = opendir(dir->name);
+	ft_printf("\n%s:\n", dir->dname);
+	rep = opendir(dir->dname);
 	if (rep == NULL)
 		exit(1);
-	a = (!(ft_strchr(env->flag, 'a'))) ? 0 : 1;
 	content = NULL;
 	content = ft_memalloc(sizeof(t_content));
 	fichierLu = readdir(rep);
 	while ((fichierLu = readdir(rep)) != NULL)
-		if (!(fichierLu->d_name[0] == '.' && a == 0))
-			content = new_elem(content, fichierLu->d_name, dir->name);
+		if (!(fichierLu->d_name[0] == '.' && env->flag[2]))
+			content = new_elem(content, fichierLu->d_name, dir->dname);
 		dir = display_file(content, dir, env, 0);
 	if (closedir(rep) == -1)
 		exit(-1);

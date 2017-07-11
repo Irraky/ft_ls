@@ -6,7 +6,7 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/07/10 21:57:27 by drecours         ###   ########.fr        #
+#    Updated: 2017/07/11 01:55:21 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = details.c \
 	  ft_strdup.c \
 	  manage_dir.c \
 	  ft_joinfree.c \
-	  ft_strlen.c
+	  ft_strlen.c \
+	  ft_strrchr.c
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
