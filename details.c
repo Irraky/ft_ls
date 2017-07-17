@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 01:59:17 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/13 14:44:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				details(t_content *content, t_env *env)
 	}
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
 		ft_printf("%s\n", content->path);
+	/// ERREUR ICIIIII ///
 	else
 		ft_printf("%s\n", &name[1]);
 }

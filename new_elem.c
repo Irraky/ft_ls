@@ -6,33 +6,22 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 01:49:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/17 13:21:20 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_content	*new_elem(t_content *content, char *str, char *path)
+t_content	*new_elem(t_content *content, char *name)
 {
-	char			*tmp;
 	struct stat		buf;
-	t_content		*new = ft_memalloc(sizeof(t_content));
+	t_content		*new;
 
-	if (path && path[0])
-	{
-		if (path[0] != '/' && path[1] == '/' && path[2] == '\0')
-			tmp = ft_strdup("./");
-		else
-			tmp = ft_joinfree(path, "/", 0);
-		tmp = ft_joinfree(tmp, str, 1);
-	}
-	else
-		tmp = ft_strdup(str);
+	new = ft_memalloc(sizeof(t_content));
+	new->path = ft_strdup(name);
 	new->buff = (struct stat *)ft_memalloc(sizeof(struct stat));
-	lstat(tmp, &buf);
+	lstat(name, &buf);
 	*new->buff = buf;
-	new->path = ft_strdup(tmp);
 	new->next = content;
-	free(tmp);
 	return (new);
 }

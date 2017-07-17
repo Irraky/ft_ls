@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 05:37:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/17 14:38:52 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 	{
 		if ((name = ft_strrchr(content->path, '/')) == NULL)
 			name = content->path;
-		if (content->buff && (!(S_ISDIR(content->buff->st_mode)) || name[0] == '.'))
+		if (content->buff && (!(S_ISDIR(content->buff->st_mode)) ||
+					(name[0] == '.' && env->flag[2] && start != 1)))
 			details(content, env);
 		else if (content->buff && (env->flag[1] || start == 1))
 			dir = new_node(dir, content->path);
