@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/17 16:46:15 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/18 15:35:59 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void		manage_dir(t_dir *dir, t_env *env)
 		exit(1);
 	content = NULL;
 	content = ft_memalloc(sizeof(t_content));
-	cur_file = readdir(rep);
 	while ((cur_file = readdir(rep)) != NULL)
 		content = new_elem(content, cur_file->d_name, dir->dname);
 	ft_printf("\n%s:\n", dir->dname);

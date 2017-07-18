@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/17 16:57:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/18 15:40:01 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 	if (arc > 1)
 		while (arg[begin])
 		{
+			if (arg[begin][0] == '-' && arg[begin][1] == '-' &&
+					arg[begin][2] == '\0')
+			{begin++;
+				break;
+			}
 			if (arg[begin][0] == '-' && arg[begin][1] != '\0')
 				begin++;
 			else
