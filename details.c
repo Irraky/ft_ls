@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/17 14:50:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/19 15:31:52 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				details(t_content *content, t_env *env)
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL)
 			ft_printf("%s", grp->gr_name);
 		ft_printf(" %llu", content->buff->st_size);
-		ft_printf(" %.12s ", &ctime(&content->buff->st_atime)[4]);
+		ft_printf(" %.12s ", &ctime(&content->buff->st_ctime)[4]);
 	}
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
 		ft_printf("%s\n", content->path);
