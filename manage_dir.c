@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/18 15:48:19 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/19 11:16:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		manage_dir(t_dir *dir, t_env *env)
 	if (env->flagname == 1)
 		env->flagname = 0;
 	else
-		ft_printf("\n%s:\n", dir->dname);
+		ft_printf("%s:\n", dir->dname);
 	dir = display_file(content, dir, env, 0);
 	if (closedir(rep) == -1)
 		exit(-1);
