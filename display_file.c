@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/19 15:17:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 11:49:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 			name = content->path;
 		else
 			name = (ft_strrchr(content->path, '/') + 1);
-		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1)
-				&& !(S_ISDIR(content->buff->st_mode) && start == 1))
-			details(content, env);
+		//if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1)
+		//		&& !(S_ISDIR(content->buff->st_mode) && start == 1))
+		//	details(content, env);
 		if (content->buff && S_ISDIR(content->buff->st_mode) && (start == 1
 					|| (env->flag[1] && name[0] != '.')))
 		{

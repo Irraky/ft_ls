@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/19 16:12:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 12:39:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 	struct stat		buf;
 	t_content		*new;
 
-	new = ft_memalloc(sizeof(t_content));
-	if ((ft_strcmp(name, ".") == 0 || ft_strcmp(name, "..") == 0)
-			)
+	if (!(new = ft_memalloc(sizeof(t_content))))
+		exit(-1);
+	if (ft_strcmp(path, "/") == 0 && !(ft_strcmp(name, "/") == 0))
+		new->path = ft_joinfree("/", name, 0);
+	else if (ft_strcmp(name, ".") == 0 || ft_strcmp(name, "..") == 0
+			|| ft_strcmp(name, "/") == 0)
 		new->path = ft_strdup(name);
 	else
 	{
@@ -27,7 +30,11 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 		new->path = ft_joinfree(new->path, name, 0);
 	}
 	new->buff = (struct stat *)ft_memalloc(sizeof(struct stat));
-	lstat(new->path, &buf);
+	if (lstat(new->path, &buf) == -1)
+	{
+		write(2, "ls: ", 4);
+		perror(new->path);
+	}
 	*new->buff = buf;
 	new->next = content;
 	return (new);

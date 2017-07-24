@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/19 16:11:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 12:37:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@ void		manage_dir(t_dir *dir, t_env *env)
 
 	if (env->flagname == 1)
 		env->flagname = 0;
-	else
-		ft_printf("%s:\n", dir->dname);
-	lstat(dir->dname, &data);
+//	else
+//		ft_printf("%s:\n", dir->dname);
+	if (lstat(dir->dname, &data) == -1)
+	{
+		write(2, "ls: ", 4);
+		perror(dir->dname);
+	}
 	if (S_IRUSR & data.st_mode)
 	{
 		if (!(rep = opendir(dir->dname)))
 			exit(1);
 		content = NULL;
 		content = ft_memalloc(sizeof(t_content));
-		while ((cur_file = readdir(rep)) != NULL)
+		while ((cur_file = readdir(rep)))
 			content = new_elem(content, cur_file->d_name, dir->dname);
 		if (closedir(rep) == -1)
 			exit(-1);
