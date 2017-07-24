@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/24 12:42:22 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 12:53:49 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_content		*sort_type(char **arg, t_content *content)
 {
 	struct stat buf;
 	int			i;
-	struct s_content *tmp;
 
 	i = -1;
 	if (arg[0] == NULL)
@@ -49,14 +48,12 @@ t_content		*sort_type(char **arg, t_content *content)
 	i = -1;
 	while (arg[++i])
 		if (lstat(arg[i], &buf) != -1)
-			content = new_elem(content, arg[i], ".");
+			content = new_elem(content, arg[i], NULL);
 		else
 		{
 			write(2, "ls: ", 4);
 			perror(arg[i]);
 		}
-tmp=content;
-while(tmp->path){ft_printf("|%s|\n", tmp->path);tmp = tmp->next;}
 	return (content);
 }
 
