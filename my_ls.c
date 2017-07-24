@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 13:27:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/17 15:06:12 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 14:02:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		main(int argc, char **argv)
 	t_dir		*dir;
 
 	dir = NULL;
-	dir = ft_memalloc(sizeof(t_dir));
+	if (!(dir = ft_memalloc(sizeof(t_dir))))
+		exit(-1);
 	init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{

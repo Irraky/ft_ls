@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/24 12:53:49 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:43:31 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@ t_content		*sort_type(char **arg, t_content *content)
 	while (arg[++i])
 		if (lstat(arg[i], &buf) != -1)
 			content = new_elem(content, arg[i], NULL);
-		else
-		{
-			write(2, "ls: ", 4);
-			perror(arg[i]);
-		}
 	return (content);
 }
 
@@ -64,7 +59,8 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 
 	begin = 1;
 	content = NULL;
-	content = ft_memalloc(sizeof(t_content));
+	if (!(content = ft_memalloc(sizeof(t_content))))
+		exit(-1);
 	if (arc > 1)
 		while (arg[begin])
 		{
