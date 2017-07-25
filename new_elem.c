@@ -19,8 +19,7 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 
 	if (!(new = ft_memalloc(sizeof(t_content))))
 		exit(-1);
-	if (ft_strcmp(name, ".") == 0 || ft_strcmp(name, "..") == 0
-			|| ft_strcmp(name, "/") == 0 || path == NULL)
+	if (ft_strcmp(name, "/") == 0 || path == NULL)
 		new->path = ft_strdup(name);
 	else if (ft_strcmp(path, "/") == 0 && !(ft_strcmp(name, "/") == 0))
 		new->path = ft_joinfree("/", name, 0);

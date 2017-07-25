@@ -30,22 +30,19 @@ t_content		*clean(t_content *content)
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 {
 	char	*name;
-	int		space;
+	t_dir	*tmp;
 
-	space = 0;
 	if (start != 1)
 		dir = clean_it(dir);
 	while (content != NULL && content->path != NULL)
 	{
-		if (!(S_ISDIR(content->buff->st_mode)))
-			space = 1;
 		if ((ft_strrchr(content->path, '/')) == NULL)
 			name = content->path;
 		else
 			name = (ft_strrchr(content->path, '/') + 1);
-//		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1)
-//				&& !(S_ISDIR(content->buff->st_mode) && start == 1))
-//			details(content, env);
+	//	if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1)
+	//			&& !(S_ISDIR(content->buff->st_mode) && start == 1))
+	//		details(content, env);
 		if (content->buff && S_ISDIR(content->buff->st_mode) && (start == 1
 					|| (env->flag[1] && name[0] != '.')))
 		{
@@ -53,6 +50,12 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 			dir = new_node(dir, content->path);
 		}
 		content = clean(content);
+	}
+	tmp = dir;
+	while (tmp)
+	{
+		ft_printf("->%s\n", tmp->dname);
+		tmp = tmp->next;	
 	}
 	ft_printf("\n");
 	return (dir);

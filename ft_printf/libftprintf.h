@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 # define ERROR -1
 # define BUFF_SIZE 1024

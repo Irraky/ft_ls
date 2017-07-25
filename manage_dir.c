@@ -20,14 +20,14 @@ void		manage_dir(t_dir *dir, t_env *env)
 	DIR				*rep;
 	struct dirent	*cur_file = NULL;
 	struct stat		data;
-	t_dir *tmp;
+//	t_dir *tmp;
 
-	/*if (*/lstat(dir->dname, &data);/* == -1)*/
-//	{
-//		write(2, "ls: ", 4);
-//		perror(dir->dname);
-//	}
-	if (data.st_mode & S_IRUSR)
+	if (lstat(dir->dname, &data) == -1)
+	{
+		write(2, "ls: ", 4);
+		perror(dir->dname);
+	}
+	if (data.st_mode & S_IROTH)
 	{
 		if (env->flagname == 1)
 			env->flagname = 0;
@@ -37,9 +37,8 @@ void		manage_dir(t_dir *dir, t_env *env)
 		if (!(content = ft_memalloc(sizeof(t_content))))
 			exit(-1);
 		ft_printf("PLOP");
-		if (data.st_mode & S_IXUSR)
+		if (data.st_mode & S_IXOTH)
 		{
-			ft_printf("%o", S_IXUSR);
 			if (!(rep = opendir(dir->dname)))
 				exit(1);
 			ft_printf("paf");
@@ -60,12 +59,12 @@ void		manage_dir(t_dir *dir, t_env *env)
 		write(2, " Permission denied\n", 19);
 		dir = clean_it(dir);
 	}
-	tmp = dir;
-	while (tmp->dname)
-	{
-		ft_printf("-> %s\n", tmp->dname);
-		tmp = tmp->next;
-	}
-	if (dir->dname != NULL)
+//	tmp = dir;
+//	while (tmp->dname)
+//	{
+//		ft_printf("-> %s\n", tmp->dname);
+//		tmp = tmp->next;
+//	}
+	if (dir->dname != NULL && dir)
 		manage_dir(dir, env);
 }
