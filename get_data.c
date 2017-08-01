@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/11 03:28:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:01:11 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int			compare_flags(char *str, t_env *env)
 {
 	const char	*flags = "lRart";
-	const char* test;
+	const char	*test;
 
 	while (*str++)
 		if (!(test = ft_strchr(flags, *str)))

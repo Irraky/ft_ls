@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/24 11:10:10 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/01 17:02:56 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void				details(t_content *content, t_env *env)
 		rights(content->buff->st_mode);
 		ft_printf("%*ld", 4, content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL)
-			ft_printf(" %s ", pwd->pw_name);
+			if (pwd->pw_name)
+				ft_printf(" %s ", pwd->pw_name);
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL)
-			ft_printf("%s", grp->gr_name);
+			if (grp->gr_name)
+				ft_printf("%s", grp->gr_name);
 		ft_printf(" %llu", content->buff->st_size);
 		ft_printf(" %.12s ", &ctime(&content->buff->st_ctime)[4]);
 	}

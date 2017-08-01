@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/24 12:58:29 by drecours         ###   ########.fr       */
+/*   Updated: 2017/07/26 12:17:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 
 	if (!(new = ft_memalloc(sizeof(t_content))))
 		exit(-1);
-	if (ft_strcmp(name, "/") == 0 || path == NULL)
+	if (ft_strcmp(name, "/") == 0 || path == NULL || !ft_strcmp(name, "."))
 		new->path = ft_strdup(name);
 	else if (ft_strcmp(path, "/") == 0 && !(ft_strcmp(name, "/") == 0))
 		new->path = ft_joinfree("/", name, 0);
