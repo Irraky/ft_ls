@@ -6,12 +6,12 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/07/11 05:10:59 by drecours         ###   ########.fr        #
+#    Updated: 2017/08/04 12:24:11 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 SRC = details.c \
 	  ft_memalloc.c \
 	  ft_memset.c \
@@ -28,7 +28,10 @@ SRC = details.c \
 	  manage_dir.c \
 	  ft_joinfree.c \
 	  ft_strlen.c \
-	  ft_strrchr.c
+	  ft_strrchr.c \
+	  ft_strsub.c \
+	  ft_strdel.c \
+	  ft_memdel.c
 
 OBJ = $(SRC:.c=.o)
 CC = gcc

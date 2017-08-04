@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_balance.c                                     :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/27 16:06:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/04 12:28:00 by drecours         ###   ########.fr       */
+/*   Created: 2016/12/09 18:04:57 by drecours          #+#    #+#             */
+/*   Updated: 2017/08/02 18:23:45 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dir		*clean_it(t_dir *dir)
+void	ft_strdel(char **as)
 {
-	t_dir		*tmp;
-
-	tmp = dir;
-	dir = dir->next;
-	ft_strdel(&tmp->dname);
-	ft_memdel((void**)&tmp);
-	return (dir);
+	if (as && *as)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }

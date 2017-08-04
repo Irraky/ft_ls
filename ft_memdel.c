@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_balance.c                                     :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/27 16:06:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/04 12:28:00 by drecours         ###   ########.fr       */
+/*   Created: 2016/12/12 14:52:15 by drecours          #+#    #+#             */
+/*   Updated: 2017/08/04 12:24:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dir		*clean_it(t_dir *dir)
+void	ft_memdel(void **ap)
 {
-	t_dir		*tmp;
-
-	tmp = dir;
-	dir = dir->next;
-	ft_strdel(&tmp->dname);
-	ft_memdel((void**)&tmp);
-	return (dir);
+	if (ap && *ap)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

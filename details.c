@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/01 17:02:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/04 12:44:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,26 @@ static void			rights(mode_t x)
 	ft_printf((S_IXOTH & x) ? "x" : "-");
 }
 
+static void print_time(struct stat *data)
+{
+	char	*tmp;
+	char	*year;
+
+	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
+	{
+		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 7);
+		year = ft_strsub(ctime(&(data->st_mtime)), 19, 5);
+		ft_printf("%s%s ", tmp, year);
+		ft_strdel(&year);
+	}
+	else
+	{
+		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 12);
+		ft_printf("%s ", tmp);
+	}
+	ft_strdel(&tmp);
+}
+
 void				details(t_content *content, t_env *env)
 {
 	struct passwd	*pwd;
@@ -62,11 +82,10 @@ void				details(t_content *content, t_env *env)
 			if (grp->gr_name)
 				ft_printf("%s", grp->gr_name);
 		ft_printf(" %llu", content->buff->st_size);
-		ft_printf(" %.12s ", &ctime(&content->buff->st_ctime)[4]);
+		print_time(content->buff);
 	}
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
 		ft_printf("%s\n", content->path);
-	/// ERREUR ICIIIII ///
 	else
 		ft_printf("%s\n", &name[1]);
 }

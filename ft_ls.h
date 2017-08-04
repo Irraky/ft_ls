@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/17 15:30:09 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/04 12:24:40 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void		*ft_memset(void *b, int c, size_t len);
 char		*ft_strchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strdup(const char *s1);
+char		*ft_strsub(const char *s, unsigned int start, int size);
 char		*ft_joinfree(char const *s1, char const *s2, int nb);
+void		ft_strdel(char **as);
+void		ft_memdel(void **ap);
 #endif

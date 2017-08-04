@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_balance.c                                     :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/27 16:06:23 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/04 12:28:00 by drecours         ###   ########.fr       */
+/*   Created: 2016/12/12 15:52:47 by drecours          #+#    #+#             */
+/*   Updated: 2017/08/02 18:23:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dir		*clean_it(t_dir *dir)
+char	*ft_strsub(char const *s, unsigned int start, int size)
 {
-	t_dir		*tmp;
+	char	*troncon;
+	int	i;
 
-	tmp = dir;
-	dir = dir->next;
-	ft_strdel(&tmp->dname);
-	ft_memdel((void**)&tmp);
-	return (dir);
+	i = -1;
+	if (!s)
+		return (NULL);
+	if (!(troncon = (char*)ft_memalloc(sizeof(char) * size + 1)))
+		return (NULL);
+	while (++i < size)
+		troncon[i] = s[start + i];
+	troncon[i] = '\0';
+	return (troncon);
 }

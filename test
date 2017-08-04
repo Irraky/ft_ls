@@ -1,0 +1,11 @@
+
+
+dr-xr-xr-x   1 root wheel 0Aug  3 13:33 fd
+plouf : /dev/fd
+
+
+dr--r--r--   1 root wheel 0Aug  3 13:33 3
+plouf : /dev/fd/3crw--w----   1 drecours tty 0Aug  4 15:30 2
+-rw-r--r--   1 drecours 2016_paris 61Aug  4 15:30 1
+crw--w----   1 drecours tty 0Aug  4 15:30 0
+
