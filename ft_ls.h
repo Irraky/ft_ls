@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <dirent.h>
 #include <string.h>
 #include <fcntl.h>

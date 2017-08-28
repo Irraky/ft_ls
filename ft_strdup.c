@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 	i = -1;
 	len = ft_strlen(s1);
 	if (!(truc = ft_memalloc(sizeof(char) * len + 1)))
-		return (0);
+		return (NULL);
 	while (i++ != len)
 		truc[i] = s1[i];
 	truc[i] = '\0';

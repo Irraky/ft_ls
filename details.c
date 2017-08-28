@@ -63,6 +63,17 @@ static void print_time(struct stat *data)
 	ft_strdel(&tmp);
 }
 
+static void			ft_blocks(struct stat *data)
+{
+	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
+	{
+		ft_printf("%d", major(data->st_rdev));
+		ft_printf(", %i", minor(data->st_rdev));
+	}
+	else
+		ft_printf(" %llu", data->st_size);
+}
+
 void				details(t_content *content, t_env *env)
 {
 	struct passwd	*pwd;
@@ -81,7 +92,7 @@ void				details(t_content *content, t_env *env)
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL)
 			if (grp->gr_name)
 				ft_printf("%s", grp->gr_name);
-		ft_printf(" %llu", content->buff->st_size);
+		ft_blocks(content->buff);
 		print_time(content->buff);
 	}
 	if ((name = ft_strrchr(content->path, '/')) == NULL)

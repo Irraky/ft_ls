@@ -43,7 +43,9 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 					|| (env->flag[1] && name[0] != '.')))
 		{
 			dir = new_node(dir, content->path);
-		}	content = clean(content);
+		}
+		content = content->next;
+		//clean(content);
 	}
 	ft_printf("\n");
 	return (dir);

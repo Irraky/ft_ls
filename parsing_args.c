@@ -74,7 +74,7 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 			else
 				break;
 		}
-	if (arc - begin == 1 || arc - begin == 0)
+	if (arc - begin <= 1)
 		env->flagname = 1;
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
