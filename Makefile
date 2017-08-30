@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = ft_ls
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 SRC = details.c \
 	  ft_memalloc.c \
 	  ft_memset.c \

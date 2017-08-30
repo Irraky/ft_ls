@@ -36,9 +36,23 @@ static void			oth_rights(mode_t x)
 		ft_printf((S_IXOTH & x) ? "x" : "-");
 }
 
-void				rights(mode_t x)
+void				rights(t_content *content)
 {
-	usr_rights(x);
-	grp_rights(x);
-	oth_rights(x);
+	char		acl_c;
+	acl_t		acl;
+	acl_entry_t	entry;
+
+	acl_c = ' ';
+	usr_rights(content->buff->st_mode);
+	grp_rights(content->buff->st_mode);
+	oth_rights(content->buff->st_mode);
+	acl = acl_get_link_np(content->path, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &entry) == -1)
+	{
+		acl_free(acl);
+		acl = NULL;
+	}
+	acl_c = acl ? '+' : acl_c;
+	acl_c = listxattr(content->path, NULL, 0, XATTR_NOFOLLOW) > 0 ? '@' : acl_c;
+	ft_printf("%c", acl_c);
 }

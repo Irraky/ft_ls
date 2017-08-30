@@ -81,11 +81,10 @@ void				details(t_content *content, t_env *env)
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	//details -> @ / +
 	if (env->flag[0])
 	{
 		type(content->buff->st_mode);
-		rights(content->buff->st_mode);
+		rights(content);
 		ft_printf("%*ld", 4, content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
 			ft_printf(" %s ", pwd->pw_name);

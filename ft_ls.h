@@ -15,15 +15,12 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/acl.h>
+#include <sys/xattr.h>
 #include <sys/syslimits.h>
 #include <dirent.h>
-#include <string.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <pwd.h>
 #include <grp.h>
-#include <stdio.h>
-#include <time.h>
 #include "ft_printf/libftprintf.h"
 
 # define WRONG_FLAG -1
@@ -65,7 +62,7 @@ void		details(t_content *content, t_env *env);
 int			get_data(char **argv, t_env *env);
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
 void		manage_dir(t_dir *dir, t_env *env);
-void		rights(mode_t x);
+void		rights(t_content *content);
 /*
 ** ADDITIONAL FONCTIONS
 */
