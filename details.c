@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-static void			type(mode_t x)
+static void				type(mode_t x)
 {
 	if (S_ISLNK(x))
 		ft_printf("l");
@@ -30,7 +30,7 @@ static void			type(mode_t x)
 		ft_printf("s");
 }
 
-static void			rights(mode_t x)
+static void				rights(mode_t x)
 {
 	ft_printf((S_IRUSR & x) ? "r" : "-");
 	ft_printf((S_IWUSR & x) ? "w" : "-");
@@ -43,7 +43,7 @@ static void			rights(mode_t x)
 	ft_printf((S_IXOTH & x) ? "x" : "-");
 }
 
-static void print_time(struct stat *data)
+static void				ft_blocksandtime(struct stat *data)
 {
 	char	*tmp;
 	char	*year;
@@ -61,10 +61,6 @@ static void print_time(struct stat *data)
 		ft_printf("%s ", tmp);
 	}
 	ft_strdel(&tmp);
-}
-
-static void			ft_blocks(struct stat *data)
-{
 	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
 	{
 		ft_printf("%d", major(data->st_rdev));
@@ -74,11 +70,30 @@ static void			ft_blocks(struct stat *data)
 		ft_printf(" %llu", data->st_size);
 }
 
+static void			ft_name(t_content *content)
+{
+	char	*name;
+	char	link[1024];
+	int	i;
+
+	i = 1024;
+	while (i >= 0)
+		link[--i] = '\0';
+	if ((name = ft_strrchr(content->path, '/')) == NULL)
+		ft_printf("%s\n", content->path);
+	else
+		ft_printf("%s", &name[1]);
+	if (S_ISLNK(content->buff->st_mode))
+		if (readlink(content->path, link, 1024) != -1)
+			ft_printf(" -> %s", link);
+	ft_printf("\n");
+			
+}
+
 void				details(t_content *content, t_env *env)
 {
 	struct passwd	*pwd;
 	struct group	*grp;
-	char			*name;
 
 	//details -> @ / +
 	if (env->flag[0])
@@ -92,11 +107,7 @@ void				details(t_content *content, t_env *env)
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL)
 			if (grp->gr_name)
 				ft_printf("%s", grp->gr_name);
-		ft_blocks(content->buff);
-		print_time(content->buff);
+		ft_blocksandtime(content->buff);
 	}
-	if ((name = ft_strrchr(content->path, '/')) == NULL)
-		ft_printf("%s\n", content->path);
-	else
-		ft_printf("%s\n", &name[1]);
+	ft_name(content);
 }
