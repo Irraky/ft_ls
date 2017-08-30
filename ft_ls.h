@@ -15,6 +15,7 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/syslimits.h>
 #include <dirent.h>
 #include <string.h>
 #include <fcntl.h>
@@ -64,6 +65,7 @@ void		details(t_content *content, t_env *env);
 int			get_data(char **argv, t_env *env);
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
 void		manage_dir(t_dir *dir, t_env *env);
+void		rights(mode_t x);
 /*
 ** ADDITIONAL FONCTIONS
 */
@@ -72,7 +74,7 @@ t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *name, char *path);
 t_content	*clean(t_content *content);
 t_dir		*clean_it(t_dir *dir);
-int			ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
 char		*ft_strrchr(const char *s, int c);
 void		*ft_memalloc(size_t size);

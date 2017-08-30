@@ -30,19 +30,6 @@ static void				type(mode_t x)
 		ft_printf("s");
 }
 
-static void				rights(mode_t x)
-{
-	ft_printf((S_IRUSR & x) ? "r" : "-");
-	ft_printf((S_IWUSR & x) ? "w" : "-");
-	ft_printf((S_IXUSR & x) ? "x" : "-");
-	ft_printf((S_IRGRP & x) ? "r" : "-");
-	ft_printf((S_IWGRP & x) ? "w" : "-");
-	ft_printf((S_IXGRP & x) ? "x" : "-");
-	ft_printf((S_IROTH & x) ? "r" : "-");
-	ft_printf((S_IWOTH & x) ? "w" : "-");
-	ft_printf((S_IXOTH & x) ? "x" : "-");
-}
-
 static void				ft_blocksandtime(struct stat *data)
 {
 	char	*tmp;
@@ -73,10 +60,10 @@ static void				ft_blocksandtime(struct stat *data)
 static void			ft_name(t_content *content)
 {
 	char	*name;
-	char	link[1024];
+	char	link[PATH_MAX];
 	int	i;
 
-	i = 1024;
+	i = PATH_MAX;
 	while (i >= 0)
 		link[--i] = '\0';
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
@@ -87,7 +74,6 @@ static void			ft_name(t_content *content)
 		if (readlink(content->path, link, 1024) != -1)
 			ft_printf(" -> %s", link);
 	ft_printf("\n");
-			
 }
 
 void				details(t_content *content, t_env *env)
@@ -101,12 +87,14 @@ void				details(t_content *content, t_env *env)
 		type(content->buff->st_mode);
 		rights(content->buff->st_mode);
 		ft_printf("%*ld", 4, content->buff->st_nlink);
-		if ((pwd = getpwuid(content->buff->st_uid)) != NULL)
-			if (pwd->pw_name)
-				ft_printf(" %s ", pwd->pw_name);
-		if ((grp = getgrgid(content->buff->st_gid)) != NULL)
-			if (grp->gr_name)
-				ft_printf("%s", grp->gr_name);
+		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
+			ft_printf(" %s ", pwd->pw_name);
+		else
+			ft_printf(" %d ", content->buff->st_uid);
+		if ((grp = getgrgid(content->buff->st_gid)) != NULL && grp->gr_name)
+			ft_printf("%s", grp->gr_name);
+		else
+			ft_printf("%d", content->buff->st_gid);
 		ft_blocksandtime(content->buff);
 	}
 	ft_name(content);

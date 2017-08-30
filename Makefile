@@ -20,6 +20,7 @@ SRC = details.c \
 	  get_data.c \
 	  clean_it.c \
 	  my_ls.c \
+	  rights.c \
 	  parsing_args.c \
 	  new_elem.c \
 	  display_file.c \
