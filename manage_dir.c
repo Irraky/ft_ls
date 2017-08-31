@@ -34,8 +34,8 @@ void		manage_dir(t_dir *dir, t_env *env)
 		dir = clean_it(dir);
 	}
 	//LSTAT !!!
-else
-{
+	else
+	{
 		if (data.st_mode & S_IRUSR)
 	{
 		if (env->flagname == 1)
@@ -64,6 +64,6 @@ else
 		dir = clean_it(dir);
 	}
 }
-if (dir->next != NULL)
+if (dir != NULL)
 		manage_dir(dir, env);
 }
