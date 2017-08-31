@@ -37,7 +37,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 			name = content->path;
 		else
 			name = (ft_strrchr(content->path, '/') + 1);
-		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1))
+		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1) && !(start == 1 && S_ISDIR(content->buff->st_mode)))
 			details(content, env);
 		if (content->buff && S_ISDIR(content->buff->st_mode) && (start == 1
 					|| (env->flag[1] && name[0] != '.')))

@@ -81,7 +81,7 @@ void				details(t_content *content, t_env *env)
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (env->flag[0] && env->flagname != 1)
+	if (env->flag[0] && !(env->flagname != 1 && S_ISDIR(content->buff->st_mode)))
 	{
 		type(content->buff->st_mode);
 		rights(content);
@@ -96,6 +96,6 @@ void				details(t_content *content, t_env *env)
 			ft_printf("%d", content->buff->st_gid);
 		ft_blocksandtime(content->buff);
 	}
-	if (env->flagname != 1)
+	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
 		ft_name(content);
 }
