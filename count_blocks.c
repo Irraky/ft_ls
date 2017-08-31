@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/31 18:18:21 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/31 18:27:41 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void				count_blocks(t_content *content, t_dir *dir, t_env *env)
 	if (env->flagname == 0)
 		ft_printf("%s:\n", dir->dname);
 	if (tmp->path != NULL)
-		ft_printf("\ntotal %d\n", total);
+		ft_printf("total %d", total);
 	env->flagname = 0;
 }

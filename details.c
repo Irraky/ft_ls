@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/04 12:44:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/31 18:27:15 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void				details(t_content *content, t_env *env)
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (env->flag[0])
+	if (env->flag[0] && env->flagname != 1)
 	{
 		type(content->buff->st_mode);
 		rights(content);
@@ -96,5 +96,6 @@ void				details(t_content *content, t_env *env)
 			ft_printf("%d", content->buff->st_gid);
 		ft_blocksandtime(content->buff);
 	}
-	ft_name(content);
+	if (env->flagname != 1)
+		ft_name(content);
 }
