@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/31 16:37:26 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/31 18:15:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			get_data(char **argv, t_env *env);
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
 void		manage_dir(t_dir *dir, t_env *env);
 void		rights(t_content *content);
+void		count_blocks(t_content *content, t_dir *dir, t_env *env);
 /*
 ** ADDITIONAL FONCTIONS
 */
@@ -73,7 +74,7 @@ t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *name, char *path);
 t_content	*clean(t_content *content);
 t_dir		*clean_it(t_dir *dir);
-int		ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
 
 char		*ft_strrchr(const char *s, int c);
 void		*ft_memalloc(size_t size);
