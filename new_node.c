@@ -17,7 +17,7 @@ t_dir		*new_node(t_dir *dir, char *str)
 	t_dir	*new;
 
 	new = ft_memalloc(sizeof(t_content));
-	new->dname = ft_strdup(str);
+	ft_strcpy((char*)&new->dname, str);
 	new->next = dir;
 	return (new);
 }

@@ -14,6 +14,8 @@
 # define FT_LS_H
 
 #include <sys/stat.h>
+#include <time.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/acl.h>
 #include <sys/xattr.h>
@@ -34,7 +36,7 @@ typedef struct				s_content
 
 typedef struct				s_dir
 {
-	char					*dname;
+	char					dname[PATH_MAX];
 	struct s_dir			*next;
 }							t_dir;
 /*

@@ -25,14 +25,17 @@ void		manage_dir(t_dir *dir, t_env *env)
 	{
 		write(2, "ls: ", 4);
 		if (env->flag[1])
-		{write(2, dir->dname, ft_strlen(dir->dname));
+		{
+			write(2, dir->dname, ft_strlen(dir->dname));
 			write(2, ": directory causes a cycle\n", 27);
-		}else
+		}
+		else
 			perror(dir->dname);
 		dir = clean_it(dir);
 	}
 	//LSTAT !!!
-else{
+else
+{
 		if (data.st_mode & S_IRUSR)
 	{
 		if (env->flagname == 1)
@@ -60,6 +63,7 @@ else{
 		write(2, " Permission denied\n", 19);
 		dir = clean_it(dir);
 	}
-}if (dir->dname != NULL)
+}
+if (dir->next != NULL)
 		manage_dir(dir, env);
 }

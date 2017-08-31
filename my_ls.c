@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
 		dir = display_file(content, dir, &env, 1);
-		if (dir && dir->dname)
+		if (dir && !dir->next)
 			manage_dir(dir, &env);
 	}
 	return (0);
