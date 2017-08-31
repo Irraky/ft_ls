@@ -30,7 +30,7 @@ void				count_blocks(t_content *content, t_dir *dir, t_env *env)
 	}
 	if (env->flagname == 0)
 		ft_printf("%s:\n", dir->dname);
-	if (tmp->path != NULL)
+	if (tmp->path != NULL && env->flag[0])
 		ft_printf("total %d", total);
 	env->flagname = 0;
 }
