@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/04 12:24:40 by drecours         ###   ########.fr       */
+/*   Updated: 2017/08/31 16:37:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_LS_H
 
 #include <sys/stat.h>
+#include <time.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/acl.h>
 #include <sys/xattr.h>
