@@ -30,11 +30,18 @@ static void				type(mode_t x)
 		ft_printf("s");
 }
 
-static void				ft_blocksandtime(struct stat *data)
+static void				ft_blocksandtime(struct stat *data, int spaces[5])
 {
 	char	*tmp;
 	char	*year;
 
+	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
+	{
+		ft_printf("%*d", spaces[3], major(data->st_rdev));
+		ft_printf(", %*d ", spaces[4], minor(data->st_rdev));
+	}
+	else
+		ft_printf(" %*llu ", spaces[3], data->st_size);
 	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
 	{
 		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 7);
@@ -48,13 +55,6 @@ static void				ft_blocksandtime(struct stat *data)
 		ft_printf("%s ", tmp);
 	}
 	ft_strdel(&tmp);
-	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
-	{
-		ft_printf("%d", major(data->st_rdev));
-		ft_printf(", %i", minor(data->st_rdev));
-	}
-	else
-		ft_printf(" %llu", data->st_size);
 }
 
 static void			ft_name(t_content *content)
@@ -76,25 +76,25 @@ static void			ft_name(t_content *content)
 	ft_printf("\n");
 }
 
-void				details(t_content *content, t_env *env)
+void				details(t_content *content, t_env *env, int spaces[5])
 {
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (env->flag[0] && !(env->flagname != 1 && S_ISDIR(content->buff->st_mode)))
+	if (env->flag[0] && !(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
 	{
 		type(content->buff->st_mode);
 		rights(content);
-		ft_printf("%*ld", 4, content->buff->st_nlink);
+		ft_printf("%*d ", spaces[0], content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
-			ft_printf(" %s ", pwd->pw_name);
+			ft_printf("%*-s", spaces[1], pwd->pw_name);
 		else
-			ft_printf(" %d ", content->buff->st_uid);
+			ft_printf("%*-d", spaces[1], content->buff->st_uid);
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL && grp->gr_name)
-			ft_printf("%s", grp->gr_name);
+			ft_printf("%*-s", spaces[2], grp->gr_name);
 		else
-			ft_printf("%d", content->buff->st_gid);
-		ft_blocksandtime(content->buff);
+			ft_printf("%*-d", spaces[2], content->buff->st_gid);
+		ft_blocksandtime(content->buff, spaces);
 	}
 	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
 		ft_name(content);

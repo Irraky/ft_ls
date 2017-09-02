@@ -24,7 +24,7 @@ t_content		*clean(t_content *content)
 	return (content);
 }
 
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int spaces[5])
 {
 	char	*name;
 
@@ -38,7 +38,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start)
 		else
 			name = (ft_strrchr(content->path, '/') + 1);
 		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1) && !(start == 1 && S_ISDIR(content->buff->st_mode)))
-			details(content, env);
+			details(content, env, spaces);
 		if (content->buff && S_ISDIR(content->buff->st_mode) && (start == 1
 					|| (env->flag[1] && name[0] != '.')))
 		{

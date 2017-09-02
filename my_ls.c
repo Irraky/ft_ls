@@ -23,6 +23,7 @@ int		main(int argc, char **argv)
 	t_env		env;
 	t_content	*content;
 	t_dir		*dir;
+	int		spaces[5];
 
 	dir = NULL;
 	if (!(dir = ft_memalloc(sizeof(t_dir))))
@@ -32,7 +33,8 @@ int		main(int argc, char **argv)
 	{
 		content = parsing_args(argv, argc, &env);
 //		sort_args(content);
-		dir = display_file(content, dir, &env, 1);
+		count(content, dir, &env, spaces);
+		dir = display_file(content, dir, &env, 1, spaces);
 		if (dir && dir->dname)
 			manage_dir(dir, &env);
 	}

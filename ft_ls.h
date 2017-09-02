@@ -60,12 +60,12 @@ typedef struct				s_env
 */
 
 t_content	*parsing_args(char **arg, int arc, t_env *env);
-void		details(t_content *content, t_env *env);
+void		details(t_content *content, t_env *env, int spaces[5]);
 int			get_data(char **argv, t_env *env);
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int deb);
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int spaces[5]);
 void		manage_dir(t_dir *dir, t_env *env);
 void		rights(t_content *content);
-void		count_blocks(t_content *content, t_dir *dir, t_env *env);
+void		count(t_content *content, t_dir *dir, t_env *env, int spaces[5]);
 /*
 ** ADDITIONAL FONCTIONS
 */

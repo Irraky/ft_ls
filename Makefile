@@ -33,7 +33,7 @@ SRC = details.c \
 	  ft_strsub.c \
 	  ft_strdel.c \
 	  ft_memdel.c \
-	  count_blocks.c
+	  count_blocks.c \
 
 OBJ = $(SRC:.c=.o)
 CC = gcc

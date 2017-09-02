@@ -20,6 +20,7 @@ void		manage_dir(t_dir *dir, t_env *env)
 	DIR				*rep;
 	struct dirent	*cur_file = NULL;
 	struct stat		data;
+	int			spaces[5];
 
 	if (lstat(dir->dname, &data) == -1)
 	{
@@ -50,8 +51,8 @@ void		manage_dir(t_dir *dir, t_env *env)
 				if (closedir(rep) == -1)
 					exit(-1);
 			}
-			count_blocks(content, dir, env);
-			dir = display_file(content, dir, env, 0);
+			count(content, dir, env, spaces);
+			dir = display_file(content, dir, env, 0, spaces);
 		}
 		else
 		{
