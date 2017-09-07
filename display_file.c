@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 17:14:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 17:54:10 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 
 	if (start != 1)
 		dir = clean_it(dir);
-	ft_printf("\n\n");
 	while (content && content->path  && content->buff)
 	{
 		if ((ft_strrchr(content->path, '/')) == NULL)
@@ -47,6 +46,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 		content = content->next;
 		//clean(content);
 	}
-	ft_printf("\n");
+	if (dir->next != NULL && !(env->flagname == 0 && start == 1))
+		ft_printf("\n");
 	return (dir);
 }

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 10:43:13 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 17:47:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void			ft_name(t_content *content)
 	while (i >= 0)
 		link[--i] = '\0';
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
-		ft_printf("%s\n", content->path);
+		ft_printf("%s", content->path);
 	else
 		ft_printf("%s", &name[1]);
 	if (S_ISLNK(content->buff->st_mode))
