@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/31 18:16:21 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 12:32:37 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		manage_dir(t_dir *dir, t_env *env)
 			perror(dir->dname);
 		dir = clean_it(dir);
 	}
-	//LSTAT !!!
 	else
 	{
 		if (data.st_mode & S_IRUSR)
@@ -51,6 +50,7 @@ void		manage_dir(t_dir *dir, t_env *env)
 				if (closedir(rep) == -1)
 					exit(-1);
 			}
+			content = lst_sort(content, env->flag[4] ? 0 : 1);
 			count(content, dir, env, spaces);
 			dir = display_file(content, dir, env, 0, spaces);
 		}

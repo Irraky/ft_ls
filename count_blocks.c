@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/31 18:27:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 10:41:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void				count(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 	total = 0;
 	dossier = 0;
 	tmp = content;
-	(void)spaces;
 	count_spaces(spaces, content);
 	while (content->path)
 	{
