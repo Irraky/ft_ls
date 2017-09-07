@@ -6,13 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/01 15:07:27 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 17:00:35 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void			sort_alpha(char **arg)
+static void			sort_alpha(char **arg)
 {
 	int		ite;
 	char	*tmp;
@@ -31,7 +31,7 @@ void			sort_alpha(char **arg)
 	}
 }
 
-t_content		*sort_type(char **arg, t_content *content)
+static t_content		*sort_type(char **arg, t_content *content)
 {
 	struct stat buf;
 	int			i;
@@ -59,8 +59,6 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 
 	begin = 1;
 	content = NULL;
-	if (!(content = ft_memalloc(sizeof(t_content))))
-		exit(-1);
 	if (arc > 1)
 		while (arg[begin])
 		{

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 10:41:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/07 17:12:33 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void			count_spaces(int spaces[5], t_content *content)
 	spaces[2] = 5;
 	spaces[3] = 2;
 	spaces[4] = 2;
-	while (content->buff)
+	while (content && content->buff)
 	{
 		verify_spaces(spaces, content);		
 		content = content->next;
@@ -63,7 +63,7 @@ void				count(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 	dossier = 0;
 	tmp = content;
 	count_spaces(spaces, content);
-	while (content->path)
+	while (content && content->path)
 	{
 		total += content->buff->st_blocks;
 		if (S_ISDIR(content->buff->st_mode))
