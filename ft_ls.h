@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 12:32:57 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 15:06:06 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@ typedef struct				s_list
 typedef struct				s_env
 {
 	char					flag[6];
-	int						pflag;
+	int						bclvide;
 	int						flagname;
-	int						start;
 }							t_env;
 
 /*

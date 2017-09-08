@@ -6,16 +6,11 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:43:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 17:41:49 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 14:55:31 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static void			init_env(t_env *env)
-{
-	ft_bzero(env, sizeof(t_env));
-}
 
 int		main(int argc, char **argv)
 {
@@ -27,7 +22,7 @@ int		main(int argc, char **argv)
 	dir = NULL;
 	if (!(dir = ft_memalloc(sizeof(t_dir))))
 		exit(-1);
-	init_env(&env);
+	ft_bzero(&env, sizeof(t_env));
 	if (get_data(argv, &env) == 1)
 	{
 		if ((content = parsing_args(argv, argc, &env)) == NULL)

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 11:34:03 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 15:24:09 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5])
 		ft_printf(", %*d ", spaces[4], minor(data->st_rdev));
 	}
 	else
-		ft_printf(" %*llu ", spaces[3], data->st_size);
+		ft_printf(" %*d ", spaces[3], data->st_size);
 	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
 	{
 		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 7);
