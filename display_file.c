@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 12:23:08 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 15:52:57 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 		content = content->next;
 	//	clean(content);
 	}
+	env->device = 0;
 	if (dir->next && start == 0)
 		ft_printf("\n");
 	return (dir);

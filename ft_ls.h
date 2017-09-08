@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 15:06:06 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 15:50:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,13 @@ typedef struct				s_dir
 	char					*dname;
 	struct s_dir			*next;
 }							t_dir;
-/*
-typedef struct				s_list
-{
-	t_dir					*start;
-	t_content				*lname;
-}							t_list;
-*/
 
 typedef struct				s_env
 {
 	char					flag[6];
 	int						bclvide;
 	int						flagname;
+	int						device;
 }							t_env;
 
 /*

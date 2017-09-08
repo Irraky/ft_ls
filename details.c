@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 15:24:09 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 16:01:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,19 @@ static void				type(mode_t x)
 		ft_printf("s");
 }
 
-static void				ft_blocksandtime(struct stat *data, int spaces[5])
+static void				ft_blocksandtime(struct stat *data, int spaces[5], t_env *env)
 {
 	char	*tmp;
 	char	*year;
 
 	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
 	{
-		ft_printf("%*d", spaces[3], major(data->st_rdev));
-		ft_printf(", %*d ", spaces[4], minor(data->st_rdev));
+		ft_printf("%*d", spaces[3] - 1, major(data->st_rdev));
+		ft_printf(", %*d ", spaces[4] - 1, minor(data->st_rdev));
 	}
 	else
-		ft_printf(" %*d ", spaces[3], data->st_size);
+		ft_printf(" %*d ", env->device == 1 ? spaces[3] +
+				spaces[4] - 1: spaces[3], data->st_size);
 	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
 	{
 		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 7);
@@ -94,7 +95,7 @@ void				details(t_content *content, t_env *env, int spaces[5])
 			ft_printf("%*-s", spaces[2], grp->gr_name);
 		else
 			ft_printf("%*-d", spaces[2], content->buff->st_gid);
-		ft_blocksandtime(content->buff, spaces);
+		ft_blocksandtime(content->buff, spaces, env);
 	}
 	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
 		ft_name(content, env);
