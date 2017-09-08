@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 17:47:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/08 11:34:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5])
 	ft_strdel(&tmp);
 }
 
-static void			ft_name(t_content *content)
+static void			ft_name(t_content *content, t_env *env)
 {
 	char	*name;
 	char	link[PATH_MAX];
@@ -70,7 +70,7 @@ static void			ft_name(t_content *content)
 		ft_printf("%s", content->path);
 	else
 		ft_printf("%s", &name[1]);
-	if (S_ISLNK(content->buff->st_mode))
+	if (env->flag[0] && S_ISLNK(content->buff->st_mode))
 		if (readlink(content->path, link, 1024) != -1)
 			ft_printf(" -> %s", link);
 	ft_printf("\n");
@@ -97,5 +97,5 @@ void				details(t_content *content, t_env *env, int spaces[5])
 		ft_blocksandtime(content->buff, spaces);
 	}
 	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
-		ft_name(content);
+		ft_name(content, env);
 }
