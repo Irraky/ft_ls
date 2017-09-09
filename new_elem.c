@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/26 12:17:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 14:15:15 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 	}
 	*new->buff = buf;
 	new->next = content;
+	if (content)
+		content->prev = new;
+	new->prev = NULL;
 	return (new);
 }

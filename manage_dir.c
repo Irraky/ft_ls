@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 15:52:58 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 14:10:22 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_content	*readit(t_content *content, t_dir *dir,
 		if (closedir(rep) == -1)
 			exit(-1);
 	}
-	content = lst_sort(content, env->flag[4] ? 0 : 1);
+	content = lst_sort(content, env->flag[4] ? 0 : 1, env);
 	return (content);
 }
 

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:43:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 14:55:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 14:28:50 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int		main(int argc, char **argv)
 	{
 		if ((content = parsing_args(argv, argc, &env)) == NULL)
 			exit(-1);
-		if ((content = lst_sort(content, env.flag[4] ? 0 : 1)) == NULL)
+		env.bgn = content;
+		if ((content = lst_sort(content, env.flag[4] ? 0 : 1, &env)) == NULL)
 			exit(-1);
 		count(content, dir, &env, spaces);
 		dir = display_file(content, dir, &env, 1, spaces);

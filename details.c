@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 16:01:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 13:04:01 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5], t_env *env)
 		ft_printf(", %*d ", spaces[4] - 1, minor(data->st_rdev));
 	}
 	else
-		ft_printf(" %*d ", env->device == 1 ? spaces[3] +
-				spaces[4] - 1: spaces[3], data->st_size);
+		ft_printf(" %*d ", (env->device == 1) ? spaces[3] +
+				spaces[4] - 1 : spaces[3], data->st_size);
 	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
 	{
 		tmp = ft_strsub(ctime(&(data->st_mtime)), 4, 7);
@@ -88,13 +88,13 @@ void				details(t_content *content, t_env *env, int spaces[5])
 		rights(content);
 		ft_printf("%*d ", spaces[0], content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
-			ft_printf("%*-s", spaces[1], pwd->pw_name);
+			ft_printf("%*-s ", spaces[1], pwd->pw_name);
 		else
-			ft_printf("%*-d", spaces[1], content->buff->st_uid);
+			ft_printf("%*-d ", spaces[1], content->buff->st_uid);
 		if ((grp = getgrgid(content->buff->st_gid)) != NULL && grp->gr_name)
 			ft_printf("%*-s", spaces[2], grp->gr_name);
 		else
-			ft_printf("%*-d", spaces[2], content->buff->st_gid);
+			ft_printf("%*-d ", spaces[2], content->buff->st_gid);
 		ft_blocksandtime(content->buff, spaces, env);
 	}
 	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))

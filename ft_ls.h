@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 15:50:07 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 14:11:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct				s_content
 	char					*path;
 	struct stat				*buff;
 	struct s_content		*next;
+	struct s_content		*prev;
 }							t_content;
 
 typedef struct				s_dir
@@ -46,6 +47,8 @@ typedef struct				s_env
 	int						bclvide;
 	int						flagname;
 	int						device;
+	struct s_content		*bgn;
+	struct s_content		*end;
 }							t_env;
 
 /*
@@ -59,7 +62,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 void		manage_dir(t_dir *dir, t_env *env);
 void		rights(t_content *content);
 void		count(t_content *content, t_dir *dir, t_env *env, int spaces[5]);
-t_content	*lst_sort(t_content *content, short fg);
+t_content	*lst_sort(t_content *content, short fg, t_env *env);
 /*
 ** ADDITIONAL FONCTIONS
 */

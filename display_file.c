@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/08 15:52:57 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 14:45:14 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 
 	if (start != 1)
 		dir = clean_it(dir);
+	content = env->flag[3] ? env->end : env->bgn;
 	while (content && content->path  && content->buff)
 	{
 		name = (ft_strrchr(content->path, '/') == NULL) ? content->path 
@@ -52,7 +53,7 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int 
 		if (S_ISLNK(content->buff->st_mode) && verify_link(content) && env->flag[0] && env->flag[1])
 			if (readlink(content->path, name, 1024) != -1)
 				dir = new_node(dir, name);
-		content = content->next;
+		content = env->flag[3] ? content->prev : content->next;
 	//	clean(content);
 	}
 	env->device = 0;
