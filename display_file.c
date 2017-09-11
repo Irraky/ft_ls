@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/11 14:41:06 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/11 14:52:13 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ static t_dir		*new_dir(t_content *content, t_env *env, t_dir *dir, t_dir *first)
 	if (S_ISLNK(content->buff->st_mode) && verify_link(content) && env->flag[0] && env->flag[1])
 		if (readlink(content->path, name, 1024) != -1)
 			dir = insert_node(dir, first, name);
-	if (dir && dir->dname)
-		return (dir);
-	return (first);
+	return (dir);
 }
 
 t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
