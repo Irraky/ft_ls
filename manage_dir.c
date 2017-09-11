@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/11 14:01:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/11 14:35:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void				manage_dir(t_dir *dir, t_env *env)
 	struct stat		data;
 	int			spaces[5];
 
+	env->bgn = NULL;
+	env->end = NULL;
 	if (lstat(dir->dname, &data) == -1)
 		dir = stat_error(env, dir);
 	else
@@ -79,7 +81,5 @@ void				manage_dir(t_dir *dir, t_env *env)
 		}
 	}
 	if (dir && dir->dname)
-	{
-		ft_printf("|%s|", dir->dname);
-		manage_dir(dir, env);}
+		manage_dir(dir, env);
 }

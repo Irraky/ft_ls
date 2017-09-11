@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/11 14:22:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/11 14:41:06 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 	tmp = NULL;
 	if (env->start != 1)
 		dir = clean_it(dir);
-	if (dir && dir->dname)
-		ft_printf("ICI%sICI", dir->dname);
 	content = env->flag[3] ? env->end : env->bgn;
 	while (content && content->path && content->buff)
 	{
@@ -91,15 +89,10 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 		tmp = new_dir(content, env, tmp, dir);
 		content = clean(content, env);
 	}
+	env->device = 0;
 	if (tmp && tmp->dname)
-	{
-		ft_printf("ABC");
-		env->device = 0;
-		if (tmp && tmp->dname && env->start == 0)
-			ft_printf("\n");
-		return (tmp);
+		dir = tmp;
+	if (dir && dir->dname && env->start == 0)
+		ft_printf("\n");
+	return (dir);
 	}
-	else{
-		ft_printf("123");
-		return (dir);}
-}
