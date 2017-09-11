@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 11:59:25 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/09 15:41:08 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void			verify_spaces(int spaces[5], t_content *content)
 	spaces[2] = tmp > spaces[2] ? tmp : spaces[2];
 	if ((content->buff->st_mode & S_IFMT) == S_IFCHR)
 	{
-		tmp = ft_ilen(minor(content->buff->st_rdev)) + 1;
+		tmp = ft_ilen(minor(content->buff->st_rdev));
 		spaces[4] = tmp > spaces[4] ? tmp : spaces[4];
-		tmp = ft_ilen(major(content->buff->st_rdev)) + 1;
+		tmp = ft_ilen(major(content->buff->st_rdev));
 	}
 	else
 		tmp = ft_ilen(content->buff->st_size) + 1;
@@ -48,7 +48,7 @@ static void			count_spaces(int spaces[5], t_content *content)
 	spaces[4] = 2;
 	while (content && content->buff)
 	{
-		verify_spaces(spaces, content);		
+		verify_spaces(spaces, content);	
 		content = content->next;
 	}
 }

@@ -6,18 +6,18 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 14:45:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/11 14:22:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_content		*clean(t_content *content)
+t_content		*clean(t_content *content, t_env *env)
 {
 	t_content		*tmp;
 
 	tmp = content;
-	content = content->next;
+	content = env->flag[3] ? content->prev : content->next;
 	ft_strdel(&tmp->path);
 	ft_memdel((void**)&tmp->buff);
 	ft_memdel((void**)&tmp);
@@ -34,30 +34,72 @@ static	int			verify_link(t_content *content)
 	return (0);
 }
 
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int spaces[5])
+static t_dir		*insert_node(t_dir *dir, t_dir *first, char *name)
+{
+	t_dir	*new;
+	t_dir	*tmp;
+
+	tmp = dir;
+	new = new_node(first, name);
+	if (first == dir)
+		new->next = NULL;
+	while (tmp && tmp != first && tmp->next && tmp->next != first)
+		tmp = tmp->next;
+	if (tmp && tmp != first)
+		tmp->next = new;
+	if (dir && dir->dname && dir != first)
+		return (dir);
+	return (new);
+}
+
+static t_dir		*new_dir(t_content *content, t_env *env, t_dir *dir, t_dir *first)
 {
 	char	*name;
 
-	if (start != 1)
+	name = (ft_strrchr(content->path, '/') == NULL) ? content->path 
+		: (ft_strrchr(content->path, '/') + 1);
+	if (content->buff && S_ISDIR(content->buff->st_mode) && (env->start == 1
+				|| (env->flag[1] && name[0] != '.')))
+		dir = insert_node(dir, first, content->path);
+	if (S_ISLNK(content->buff->st_mode) && verify_link(content) && env->flag[0] && env->flag[1])
+		if (readlink(content->path, name, 1024) != -1)
+			dir = insert_node(dir, first, name);
+	if (dir && dir->dname)
+		return (dir);
+	return (first);
+}
+
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
+{
+	char	*name;
+	t_dir	*tmp;
+
+
+	tmp = NULL;
+	if (env->start != 1)
 		dir = clean_it(dir);
+	if (dir && dir->dname)
+		ft_printf("ICI%sICI", dir->dname);
 	content = env->flag[3] ? env->end : env->bgn;
-	while (content && content->path  && content->buff)
+	while (content && content->path && content->buff)
 	{
 		name = (ft_strrchr(content->path, '/') == NULL) ? content->path 
 			: (ft_strrchr(content->path, '/') + 1);
-		if (content->buff && !(name[0] == '.' && !env->flag[2] && start != 1) && !(start == 1 && S_ISDIR(content->buff->st_mode)))
+		if (content->buff && !(name[0] == '.' && !env->flag[2] && env->start != 1) 
+				&& !(env->start == 1 && S_ISDIR(content->buff->st_mode)))
 			details(content, env, spaces);
-		if (content->buff && S_ISDIR(content->buff->st_mode) && (start == 1
-					|| (env->flag[1] && name[0] != '.')))
-			dir = new_node(dir, content->path);
-		if (S_ISLNK(content->buff->st_mode) && verify_link(content) && env->flag[0] && env->flag[1])
-			if (readlink(content->path, name, 1024) != -1)
-				dir = new_node(dir, name);
-		content = env->flag[3] ? content->prev : content->next;
-	//	clean(content);
+		tmp = new_dir(content, env, tmp, dir);
+		content = clean(content, env);
 	}
-	env->device = 0;
-	if (dir->next && start == 0)
-		ft_printf("\n");
-	return (dir);
+	if (tmp && tmp->dname)
+	{
+		ft_printf("ABC");
+		env->device = 0;
+		if (tmp && tmp->dname && env->start == 0)
+			ft_printf("\n");
+		return (tmp);
+	}
+	else{
+		ft_printf("123");
+		return (dir);}
 }

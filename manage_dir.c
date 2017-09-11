@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   manage_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/16 13:20:13 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 14:10:22 by drecours         ###   ########.fr       */
+/*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
+/*   Updated: 2017/09/11 14:01:23 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static t_content	*readit(t_content *content, t_dir *dir,
 	struct dirent	*cur_file;
 
 	cur_file = NULL;
-	if (!(content = ft_memalloc(sizeof(t_content))))
-		exit(-1);
+//	if (!(content = ft_memalloc(sizeof(t_content))))
+//		exit(-1);
 	if (data.st_mode & S_IXUSR)
 	{
 		if (!(rep = opendir(dir->dname)))
@@ -68,7 +68,7 @@ void				manage_dir(t_dir *dir, t_env *env)
 		{
 			content = readit(NULL, dir, data, env);
 			count(content, dir, env, spaces);
-			dir = display_file(content, dir, env, 0, spaces);
+			dir = display_file(content, dir, env, spaces);
 		}
 		else
 		{
@@ -78,6 +78,8 @@ void				manage_dir(t_dir *dir, t_env *env)
 			dir = clean_it(dir);
 		}
 	}
-	if (dir->dname != NULL)
-		manage_dir(dir, env);
+	if (dir && dir->dname)
+	{
+		ft_printf("|%s|", dir->dname);
+		manage_dir(dir, env);}
 }

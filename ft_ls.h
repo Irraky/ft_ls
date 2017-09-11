@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 14:11:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/11 14:23:33 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct				s_env
 	int						bclvide;
 	int						flagname;
 	int						device;
+	int						start;
 	struct s_content		*bgn;
 	struct s_content		*end;
 }							t_env;
@@ -58,7 +59,7 @@ typedef struct				s_env
 t_content	*parsing_args(char **arg, int arc, t_env *env);
 void		details(t_content *content, t_env *env, int spaces[5]);
 int			get_data(char **argv, t_env *env);
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int start, int spaces[5]);
+t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5]);
 void		manage_dir(t_dir *dir, t_env *env);
 void		rights(t_content *content);
 void		count(t_content *content, t_dir *dir, t_env *env, int spaces[5]);
@@ -69,7 +70,7 @@ t_content	*lst_sort(t_content *content, short fg, t_env *env);
 
 t_dir		*new_node(t_dir *dir, char *str);
 t_content	*new_elem(t_content *content, char *name, char *path);
-t_content	*clean(t_content *content);
+t_content	*clean(t_content *content, t_env *env);
 t_dir		*clean_it(t_dir *dir);
 int			ft_printf(const char *format, ...);
 
