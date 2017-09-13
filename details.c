@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 17:49:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:44:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5], t_env *env)
 		ft_printf(", %*d ", spaces[4] - 1, minor(data->st_rdev));
 	}
 	else
-		ft_printf(" %*d ", (env->device == 1) ? spaces[3] +
+		ft_printf(" %*lld ", (env->device == 1) ? spaces[3] +
 				spaces[4] - 1 : spaces[3], data->st_size);
 	if ((time(NULL) - data->st_mtime) >= (525600 * 60 / 2))
 	{
@@ -82,7 +82,8 @@ void				details(t_content *content, t_env *env, int spaces[5])
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (env->flag[0] && !(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
+	if (env->flag[0] && (!(env->flagname == 1 && (S_ISDIR(content->buff->st_mode)))
+					|| (S_ISLNK(content->buff->st_mode) && verify_link(content))))
 	{
 		type(content->buff->st_mode);
 		rights(content);
@@ -97,6 +98,10 @@ void				details(t_content *content, t_env *env, int spaces[5])
 			ft_printf("%*-d ", spaces[2], content->buff->st_gid);
 		ft_blocksandtime(content->buff, spaces, env);
 	}
-	if (!(env->flagname == 1 && S_ISDIR(content->buff->st_mode)))
-		ft_name(content, env);
+	if (!(env->flagname == 1 && (S_ISDIR(content->buff->st_mode))))
+		if (!(S_ISLNK(content->buff->st_mode)))
+			ft_name(content, env);
+	if (S_ISLNK(content->buff->st_mode) && verify_link(content)
+			 && (env->start != 1  || env->flag[0]))
+			ft_name(content, env);
 }

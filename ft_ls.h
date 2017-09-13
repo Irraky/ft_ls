@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/11 14:23:33 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 14:49:16 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ void		manage_dir(t_dir *dir, t_env *env);
 void		rights(t_content *content);
 void		count(t_content *content, t_dir *dir, t_env *env, int spaces[5]);
 t_content	*lst_sort(t_content *content, short fg, t_env *env);
+int			verify_link(t_content *content);
+char		*stickname(char *root, char *oldname, char *name, char *lgname);
 /*
 ** ADDITIONAL FONCTIONS
 */
 
 t_dir		*new_node(t_dir *dir, char *str);
+t_dir		*insert_node(t_dir *dir, t_dir *first, char *name);
 t_content	*new_elem(t_content *content, char *name, char *path);
 t_content	*clean(t_content *content, t_env *env);
 t_dir		*clean_it(t_dir *dir);

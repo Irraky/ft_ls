@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                 +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:00:56 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 15:55:53 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 12:33:30 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_content			*lst_sort(t_content *content, short fg, t_env *env)
 
 	start = content;
 	tmp = content;
-	while (content && content->next && content->next->next)
+	while (content && content->next)
 	{
 		if ((ft_strcmp(content->path, content->next->path) > 0 && fg == 1) || 
 				(fg == 0 && (content->buff->st_mtime < content->next->buff->st_mtime ||

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 15:41:08 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 14:54:12 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,32 @@ static void			count_spaces(int spaces[5], t_content *content)
 	}
 }
 
+static t_dir		*change_name(t_dir *dir)
+{
+	char			name[PATH_MAX];
+	struct stat		data;
+	char			*root;
+	int				i;
+	char			*lgname;
+
+	i = PATH_MAX;
+	if (!(lgname = ft_memalloc(sizeof(char) * (PATH_MAX + 1))))
+		exit(-1);
+	while (i >= 0)
+		name[--i] = '\0';
+	root = (ft_strrchr(dir->dname, '/') == NULL) ? dir->dname
+		: (ft_strrchr(dir->dname, '/') + 1);
+	lstat(dir->dname, &data);
+	if (S_ISLNK(data.st_mode))
+		if (readlink(dir->dname, name, PATH_MAX) != -1)
+		{
+			free(dir->dname);
+			dir->dname = NULL;
+			dir->dname = stickname(root, dir->dname, name, lgname);
+		}
+	return (dir);
+}
+
 void				count(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 {
 	int			total;
@@ -82,4 +108,6 @@ void				count(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 		env->flagname = 0;
 	}
 	env->bclvide = 1;
+	if (dir && dir->dname)
+		dir = change_name(dir);
 }
