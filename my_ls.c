@@ -6,18 +6,18 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:43:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 15:36:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:56:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_env		env;
 	t_content	*content;
 	t_dir		*dir;
-	int		spaces[5];
+	int			spaces[5];
 
 	dir = NULL;
 	if (!(dir = ft_memalloc(sizeof(t_dir))))

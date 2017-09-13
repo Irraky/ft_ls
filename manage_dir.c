@@ -6,13 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/11 15:25:45 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 16:03:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-struct dirent* readdir(DIR* repertoire) ;
+//struct dirent* readdir(DIR* repertoire);
 
 static t_dir		*stat_error(t_env *env, t_dir *dir)
 {
@@ -35,8 +35,6 @@ static t_content	*readit(t_content *content, t_dir *dir,
 	struct dirent	*cur_file;
 
 	cur_file = NULL;
-//	if (!(content = ft_memalloc(sizeof(t_content))))
-//		exit(-1);
 	if (data.st_mode & S_IXUSR)
 	{
 		if (!(rep = opendir(dir->dname)))
@@ -58,7 +56,7 @@ void				manage_dir(t_dir *dir, t_env *env)
 {
 	t_content		*content;
 	struct stat		data;
-	int			spaces[5];
+	int				spaces[5];
 
 	env->bgn = NULL;
 	env->end = NULL;

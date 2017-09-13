@@ -6,13 +6,13 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/07 17:00:35 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:55:34 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void			sort_alpha(char **arg)
+static void				sort_alpha(char **arg)
 {
 	int		ite;
 	char	*tmp;
@@ -52,7 +52,7 @@ static t_content		*sort_type(char **arg, t_content *content)
 	return (content);
 }
 
-t_content		*parsing_args(char **arg, int arc, t_env *env)
+t_content				*parsing_args(char **arg, int arc, t_env *env)
 {
 	int			begin;
 	t_content	*content;
@@ -65,12 +65,12 @@ t_content		*parsing_args(char **arg, int arc, t_env *env)
 			if (ft_strcmp(arg[begin], "--") == 0)
 			{
 				begin++;
-				break;
+				break ;
 			}
 			if (arg[begin][0] == '-' && arg[begin][1] != '\0')
 				begin++;
 			else
-				break;
+				break ;
 		}
 	if (arc - begin <= 1)
 		env->flagname = 1;
