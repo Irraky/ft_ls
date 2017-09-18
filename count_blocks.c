@@ -61,11 +61,13 @@ static t_dir		*change_name(t_dir *dir)
 	int				i;
 	char			*lgname;
 
-	i = PATH_MAX;
 	if (!(lgname = ft_memalloc(sizeof(char) * (PATH_MAX + 1))))
 		exit(-1);
-	while (i >= 0)
-		name[--i] = '\0';
+	i = 0;
+	while (i < PATH_MAX) {
+		name[i] = '\0';
+		++i;
+	}
 	root = (ft_strrchr(dir->dname, '/') == NULL) ? dir->dname
 		: (ft_strrchr(dir->dname, '/') + 1);
 	lstat(dir->dname, &data);

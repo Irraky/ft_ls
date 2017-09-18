@@ -66,9 +66,11 @@ static void				ft_name(t_content *content, t_env *env)
 	char			link[PATH_MAX];
 	int				i;
 
-	i = PATH_MAX;
-	while (i >= 0)
-		link[--i] = '\0';
+	i = 0;
+	while (i < PATH_MAX) {
+		link[i] = '\0';
+		++i;
+	}
 	if ((name = ft_strrchr(content->path, '/')) == NULL)
 		ft_printf("%s", content->path);
 	else
