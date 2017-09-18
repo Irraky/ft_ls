@@ -75,7 +75,6 @@ static t_dir		*change_name(t_dir *dir)
 		if (readlink(dir->dname, name, PATH_MAX) != -1)
 		{
 			free(dir->dname);
-			dir->dname = NULL;
 			dir->dname = stickname(root, dir->dname, name, lgname);
 		}
 	return (dir);
