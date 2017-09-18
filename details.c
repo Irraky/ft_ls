@@ -6,34 +6,36 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 15:44:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 15:52:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void				type(mode_t x)
+static void				type(t_content *content)
 {
-	if (S_ISLNK(x))
+	if (S_ISLNK(content->buff->st_mode))
 		ft_printf("l");
-	else if (S_ISREG(x))
+	else if (S_ISREG(content->buff->st_mode))
 		ft_printf("-");
-	else if (S_ISDIR(x))
+	else if (S_ISDIR(content->buff->st_mode))
 		ft_printf("d");
-	else if (S_ISCHR(x))
+	else if (S_ISCHR(content->buff->st_mode))
 		ft_printf("c");
-	else if (S_ISBLK(x))
+	else if (S_ISBLK(content->buff->st_mode))
 		ft_printf("b");
-	else if (S_ISFIFO(x))
+	else if (S_ISFIFO(content->buff->st_mode))
 		ft_printf("p");
-	else if (S_ISSOCK(x))
+	else if (S_ISSOCK(content->buff->st_mode))
 		ft_printf("s");
+	rights(content);
 }
 
-static void				ft_blocksandtime(struct stat *data, int spaces[5], t_env *env)
+static void				ft_blocksandtime(struct stat *data, int spaces[5],
+		t_env *env)
 {
-	char	*tmp;
-	char	*year;
+	char			*tmp;
+	char			*year;
 
 	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
 	{
@@ -58,11 +60,11 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5], t_env *env)
 	ft_strdel(&tmp);
 }
 
-static void			ft_name(t_content *content, t_env *env)
+static void				ft_name(t_content *content, t_env *env)
 {
-	char	*name;
-	char	link[PATH_MAX];
-	int	i;
+	char			*name;
+	char			link[PATH_MAX];
+	int				i;
 
 	i = PATH_MAX;
 	while (i >= 0)
@@ -77,16 +79,16 @@ static void			ft_name(t_content *content, t_env *env)
 	ft_printf("\n");
 }
 
-void				details(t_content *content, t_env *env, int spaces[5])
+void					details(t_content *content, t_env *env, int spaces[5])
 {
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (env->flag[0] && (!(env->flagname == 1 && (S_ISDIR(content->buff->st_mode)))
-					|| (S_ISLNK(content->buff->st_mode) && verify_link(content))))
+	if (env->flag[0] && (!(env->flagname == 1 &&
+				(S_ISDIR(content->buff->st_mode))) ||
+				(S_ISLNK(content->buff->st_mode) && verify_link(content))))
 	{
-		type(content->buff->st_mode);
-		rights(content);
+		type(content);
 		ft_printf("%*d ", spaces[0], content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
 			ft_printf("%*-s ", spaces[1], pwd->pw_name);
@@ -102,6 +104,6 @@ void				details(t_content *content, t_env *env, int spaces[5])
 		if (!(S_ISLNK(content->buff->st_mode)))
 			ft_name(content, env);
 	if (S_ISLNK(content->buff->st_mode) && verify_link(content)
-			 && (env->start != 1  || env->flag[0]))
-			ft_name(content, env);
+			&& (env->start != 1 || env->flag[0]))
+		ft_name(content, env);
 }

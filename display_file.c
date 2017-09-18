@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 13:43:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 15:41:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 15:46:25 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_content		*clean(t_content *content, t_env *env)
 {
-	t_content		*tmp;
+	t_content	*tmp;
 
 	tmp = content;
 	content = env->flag[3] ? content->prev : content->next;
@@ -24,9 +24,9 @@ t_content		*clean(t_content *content, t_env *env)
 	return (content);
 }
 
-int			verify_link(t_content *content)
+int				verify_link(t_content *content)
 {
-	struct stat			data;
+	struct stat		data;
 
 	stat(content->path, &data);
 	if (S_ISDIR(data.st_mode))
@@ -36,12 +36,11 @@ int			verify_link(t_content *content)
 
 char			*stickname(char *root, char *oldname, char *name, char *lgname)
 {
-	int		i;
-	int		j;
+	int				i;
+	int				j;
 
 	i = 0;
 	j = 0;
-
 	while (oldname && oldname[i] && &oldname[i] != &root[0])
 	{
 		lgname[i] = oldname[i];
@@ -57,26 +56,27 @@ char			*stickname(char *root, char *oldname, char *name, char *lgname)
 	return (lgname);
 }
 
-static t_dir		*new_dir(t_content *content, t_env *env, t_dir *dir, t_dir *first)
+static t_dir	*new_dir(t_content *content, t_env *env, t_dir *dir,
+		t_dir *first)
 {
-	char	*root;
+	char		*root;
 
-	root = (ft_strrchr(content->path, '/') == NULL) ? content->path 
+	root = (ft_strrchr(content->path, '/') == NULL) ? content->path
 		: (ft_strrchr(content->path, '/') + 1);
 	if (content->buff && S_ISDIR(content->buff->st_mode) && (env->start == 1
 				|| (env->flag[1] && root[0] != '.')))
 		dir = insert_node(dir, first, content->path);
 	if (S_ISLNK(content->buff->st_mode) && verify_link(content) == 1 &&
 			env->start == 1 && !env->flag[0])
-			dir = insert_node(dir, first, content->path);
+		dir = insert_node(dir, first, content->path);
 	return (dir);
 }
 
-t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
+t_dir			*display_file(t_content *content, t_dir *dir, t_env *env,
+				int spaces[5])
 {
-	char	*name;
-	t_dir	*tmp;
-
+	char		*name;
+	t_dir		*tmp;
 
 	tmp = NULL;
 	if (env->start != 1)
@@ -84,10 +84,11 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 	content = env->flag[3] ? env->end : env->bgn;
 	while (content && content->path && content->buff)
 	{
-		name = (ft_strrchr(content->path, '/') == NULL) ? content->path 
+		name = (ft_strrchr(content->path, '/') == NULL) ? content->path
 			: (ft_strrchr(content->path, '/') + 1);
-		if (content->buff && !(name[0] == '.' && !env->flag[2] && env->start != 1) 
-				&& (!(env->start == 1 && S_ISDIR(content->buff->st_mode))))
+		if (content->buff && !(name[0] == '.' && !env->flag[2] &&
+				env->start != 1) && (!(env->start == 1 &&
+				S_ISDIR(content->buff->st_mode))))
 			details(content, env, spaces);
 		tmp = new_dir(content, env, tmp, dir);
 		content = clean(content, env);
@@ -98,4 +99,4 @@ t_dir		*display_file(t_content *content, t_dir *dir, t_env *env, int spaces[5])
 	if (dir && dir->dname && env->start == 0)
 		ft_printf("\n");
 	return (dir);
-	}
+}

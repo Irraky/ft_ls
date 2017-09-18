@@ -6,13 +6,11 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 16:03:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:04:38 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-//struct dirent* readdir(DIR* repertoire);
 
 static t_dir		*stat_error(t_env *env, t_dir *dir)
 {
@@ -52,6 +50,13 @@ static t_content	*readit(t_content *content, t_dir *dir,
 	return (content);
 }
 
+void				permission_denied(t_dir *dir)
+{
+	write(2, "ls: ", 4);
+	write(2, dir->dname, ft_strlen(dir->dname));
+	write(2, " Permission denied\n", 19);
+}
+
 void				manage_dir(t_dir *dir, t_env *env)
 {
 	t_content		*content;
@@ -64,7 +69,7 @@ void				manage_dir(t_dir *dir, t_env *env)
 		dir = stat_error(env, dir);
 	else
 	{
-		if (data.st_mode & S_IRUSR)
+		if (data.st_mode & S_IROTH)
 		{
 			content = readit(NULL, dir, data, env);
 			count(content, dir, env, spaces);
@@ -72,9 +77,7 @@ void				manage_dir(t_dir *dir, t_env *env)
 		}
 		else
 		{
-			write(2, "ls: ", 4);
-			write(2, dir->dname, ft_strlen(dir->dname));
-			write(2, " Permission denied\n", 19);
+			permission_denied(dir);
 			dir = clean_it(dir);
 		}
 	}

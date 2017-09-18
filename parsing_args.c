@@ -6,16 +6,16 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 15:55:34 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:24:41 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void				sort_alpha(char **arg)
+static void			sort_alpha(char **arg)
 {
-	int		ite;
-	char	*tmp;
+	int				ite;
+	char			*tmp;
 
 	ite = 0;
 	while (arg[ite + 1])
@@ -31,10 +31,10 @@ static void				sort_alpha(char **arg)
 	}
 }
 
-static t_content		*sort_type(char **arg, t_content *content)
+static t_content	*sort_type(char **arg, t_content *content, int *space)
 {
-	struct stat buf;
-	int			i;
+	struct stat		buf;
+	int				i;
 
 	i = -1;
 	if (arg[0] == NULL)
@@ -42,6 +42,7 @@ static t_content		*sort_type(char **arg, t_content *content)
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
+			*space = 1;
 			write(2, "ls: ", 4);
 			perror(arg[i]);
 		}
@@ -52,10 +53,11 @@ static t_content		*sort_type(char **arg, t_content *content)
 	return (content);
 }
 
-t_content				*parsing_args(char **arg, int arc, t_env *env)
+t_content			*parsing_args(char **arg, int arc, t_env *env,
+		int *space)
 {
-	int			begin;
-	t_content	*content;
+	int				begin;
+	t_content		*content;
 
 	begin = 1;
 	content = NULL;
@@ -76,6 +78,6 @@ t_content				*parsing_args(char **arg, int arc, t_env *env)
 		env->flagname = 1;
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
-	content = sort_type(&arg[begin], content);
+	content = sort_type(&arg[begin], content, space);
 	return (content);
 }

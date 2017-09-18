@@ -6,33 +6,68 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:43:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 15:56:43 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:25:11 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			main(int argc, char **argv)
+static int		ft_space(t_content *content, int space)
 {
-	t_env		env;
-	t_content	*content;
-	t_dir		*dir;
-	int			spaces[5];
+	int		dir;
+	int		file;
+
+	dir = 0;
+	file = 0;
+	while (content && content->path)
+	{
+		if (S_ISDIR(content->buff->st_mode) ||
+				(S_ISLNK(content->buff->st_mode) && verify_link(content) == 1))
+			dir = 1;
+		else
+			file = 1;
+		if (dir == 1 && file == 1)
+			return (1);
+		content = content->next;
+	}
+	if (dir == 1 && space == 1)
+		return (space);
+	return (0);
+}
+
+static t_dir	*init_env(t_env *env)
+{
+	t_dir	*dir;
 
 	dir = NULL;
 	if (!(dir = ft_memalloc(sizeof(t_dir))))
 		exit(-1);
-	ft_bzero(&env, sizeof(t_env));
-	env.start = 1;
+	ft_bzero(env, sizeof(t_env));
+	env->start = 1;
+	return (dir);
+}
+
+int				main(int argc, char **argv)
+{
+	t_env		env;
+	t_content	*content;
+	t_dir		*dir;
+	int			space;
+	int			spaces[5];
+
+	dir = init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
-		if ((content = parsing_args(argv, argc, &env)) == NULL)
+		if ((content = parsing_args(argv, argc, &env, &space)) == NULL)
 			exit(-1);
 		env.bgn = content;
 		if ((content = lst_sort(content, env.flag[4] ? 0 : 1, &env)) == NULL)
 			exit(-1);
 		count(content, dir, &env, spaces);
+		space = ft_space(content, space);
 		dir = display_file(content, dir, &env, spaces);
+		if (space == 1)
+			write(1, "\n", 1);
 		env.start = 0;
 		if (dir && dir->dname)
 			manage_dir(dir, &env);

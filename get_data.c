@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 12:39:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/08/01 15:01:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 15:08:53 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int			compare_flags(char *str, t_env *env)
 	return (0);
 }
 
-int			get_data(char **argv, t_env *env)
+int					get_data(char **argv, t_env *env)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	if (argv[1])
@@ -40,7 +40,7 @@ int			get_data(char **argv, t_env *env)
 		while (argv[++i] && argv[i][0] == '-' && argv[i][1] != '\0')
 		{
 			if (argv[i][1] == '-')
-				break;
+				break ;
 			if (compare_flags(argv[i], env) == WRONG_FLAG)
 				return (WRONG_FLAG);
 		}

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 14:54:12 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 16:11:37 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			verify_spaces(int spaces[5], t_content *content)
 {
 	int	tmp;
 
-	tmp = ft_ilen(content->buff->st_nlink) + 1; 	
+	tmp = ft_ilen(content->buff->st_nlink) + 1;
 	spaces[0] = tmp > spaces[0] ? tmp : spaces[0];
 	if (getpwuid(content->buff->st_uid))
 		tmp = ft_strlen((getpwuid(content->buff->st_uid))->pw_name) + 1;
@@ -48,7 +48,7 @@ static void			count_spaces(int spaces[5], t_content *content)
 	spaces[4] = 2;
 	while (content && content->buff)
 	{
-		verify_spaces(spaces, content);	
+		verify_spaces(spaces, content);
 		content = content->next;
 	}
 }
@@ -79,26 +79,32 @@ static t_dir		*change_name(t_dir *dir)
 	return (dir);
 }
 
-void				count(t_content *content, t_dir *dir, t_env *env, int spaces[5])
+static t_content	*add_total(t_content *content, int *fichier, int *total)
+{
+	char		*name;
+
+	name = (ft_strrchr(content->path, '/') == NULL) ? content->path
+		: (ft_strrchr(content->path, '/') + 1);
+	if (!(ft_strcmp(name, ".") == 0) && !(ft_strcmp(name, "..") == 0))
+		*fichier = 1;
+	*total += content->buff->st_blocks;
+	content = content->next;
+	return (content);
+}
+
+void				count(t_content *content, t_dir *dir, t_env *env,
+		int spaces[5])
 {
 	int			total;
 	t_content	*tmp;
 	int			fichier;
-	char		*name;
 
 	total = 0;
 	fichier = 0;
 	tmp = content;
 	count_spaces(spaces, content);
 	while (content && content->path)
-	{
-		name = (ft_strrchr(content->path, '/') == NULL) ? content->path
-			: (ft_strrchr(content->path, '/') + 1);	
-		if (!(ft_strcmp(name, ".") == 0) && !(ft_strcmp(name, "..") == 0))
-			fichier = 1;
-		total += content->buff->st_blocks;
-		content = content->next;
-	}
+		content = add_total(content, &fichier, &total);
 	if (!(env->bclvide == 0))
 	{
 		if (env->flagname == 0)

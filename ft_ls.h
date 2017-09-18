@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/13 16:10:33 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/18 16:41:36 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct			s_env
 ** FT_LS FUNCTIONS
 */
 
-t_content				*parsing_args(char **arg, int arc, t_env *env);
+t_content				*parsing_args(char **arg, int arc, t_env *env,
+						int *space);
 void					details(t_content *content, t_env *env, int spaces[5]);
 int						get_data(char **argv, t_env *env);
 t_dir					*display_file(t_content *content, t_dir *dir,
