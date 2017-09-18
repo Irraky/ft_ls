@@ -64,6 +64,7 @@ int		main(int argc, char **argv)
 	int			space;
 	int			spaces[5];
 
+	space = 0;
 	dir = init_env(&env);
 	if (get_data(argv, &env) == 1)
 	{
