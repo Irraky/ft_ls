@@ -20,7 +20,7 @@ static void		double_joinfree(char *path, char *name, t_content *new)
 
 t_content		*new_elem(t_content *content, char *name, char *path)
 {
-	struct stat		buf;
+	/*struct stat		buf;*/
 	t_content		*new;
 
 	if (!(new = ft_memalloc(sizeof(t_content))))
@@ -31,13 +31,12 @@ t_content		*new_elem(t_content *content, char *name, char *path)
 		new->path = ft_joinfree("/", name, 0);
 	else
 		double_joinfree(path, name, new);
-	new->buff = (struct stat *)ft_memalloc(sizeof(struct stat));
-	if (lstat(new->path, &buf) == -1)
+	new->buff = (struct stat*) ft_memalloc(sizeof(struct stat));
+	if (lstat(new->path, new->buff) == -1)
 	{
 		write(2, "ls: ", 4);
 		perror(new->path);
 	}
-	*new->buff = buf;
 	new->next = content;
 	if (content)
 		content->prev = new;
