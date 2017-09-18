@@ -50,6 +50,7 @@ typedef struct			s_env
 	int					start;
 	struct s_content	*bgn;
 	struct s_content	*end;
+	t_dir			*first_elem;
 }						t_env;
 
 /*

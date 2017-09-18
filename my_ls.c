@@ -43,11 +43,20 @@ static t_dir	*init_env(t_env *env)
 	if (!(dir = ft_memalloc(sizeof(t_dir))))
 		exit(-1);
 	ft_bzero(env, sizeof(t_env));
+	env->first_elem = dir;
 	env->start = 1;
 	return (dir);
 }
 
-int				main(int argc, char **argv)
+static void	clean_first(t_env *env)
+{
+	if (env->first_elem && env->first_elem->dname)
+		free(env->first_elem->dname);
+	free(env->first_elem);
+	env->first_elem = NULL;
+}
+
+int		main(int argc, char **argv)
 {
 	t_env		env;
 	t_content	*content;
@@ -72,5 +81,6 @@ int				main(int argc, char **argv)
 		if (dir && dir->dname)
 			manage_dir(dir, &env);
 	}
+	clean_first(&env);
 	return (0);
 }
