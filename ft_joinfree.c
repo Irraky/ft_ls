@@ -14,9 +14,9 @@
 
 char	*ft_joinfree(char const *s1, char const *s2, int nb)
 {
-	size_t			size;
-	size_t			i;
-	size_t			j;
+	int			size;
+	int			i;
+	int			j;
 	char			*str;
 
 	if (!s1)
@@ -27,7 +27,7 @@ char	*ft_joinfree(char const *s1, char const *s2, int nb)
 	i = -1;
 	j = 0;
 	size = ft_strlen(s1) + ft_strlen(s2);
-	if (!(str = (char*)ft_memalloc(sizeof(str) * size + 1)))
+	if (!(str = (char*)ft_memalloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	while (s1[++i])
 		str[i] = s1[i];
