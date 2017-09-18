@@ -76,7 +76,10 @@ static t_dir		*change_name(t_dir *dir)
 		{
 			free(dir->dname);
 			dir->dname = stickname(root, dir->dname, name, lgname);
-		}
+		} else
+			free(lgname);
+	else
+		free(lgname);
 	return (dir);
 }
 
