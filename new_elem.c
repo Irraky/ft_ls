@@ -15,7 +15,7 @@
 static void		double_joinfree(char *path, char *name, t_content *new)
 {
 	new->path = ft_joinfree(path, "/", 0);
-	new->path = ft_joinfree(new->path, name, 0);
+	new->path = ft_joinfree(new->path, name, 1);
 }
 
 t_content		*new_elem(t_content *content, char *name, char *path)
