@@ -18,6 +18,7 @@ t_dir		*clean_it(t_dir *dir)
 
 	tmp = dir;
 	dir = dir->next;
+	ft_strdel(&tmp->dname);
 	ft_memdel((void**)&tmp);
 	return (dir);
 }

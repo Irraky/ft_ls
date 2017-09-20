@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/21 19:17:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:58:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void			cleanit(t_e *env)
 
 int					ft_printf(const char *format, ...)
 {
-	t_e		env;
+	t_e			env;
 	va_list		args;
 	const t_con tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
 		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};

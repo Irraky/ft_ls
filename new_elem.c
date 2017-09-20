@@ -6,15 +6,20 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:00:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/07/26 12:17:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/19 14:38:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_content	*new_elem(t_content *content, char *name, char *path)
+static void		double_joinfree(char *path, char *name, t_content *new)
 {
-	struct stat		buf;
+	new->path = ft_joinfree(path, "/", 0);
+	new->path = ft_joinfree(new->path, name, 1);
+}
+
+t_content		*new_elem(t_content *content, char *name, char *path)
+{
 	t_content		*new;
 
 	if (!(new = ft_memalloc(sizeof(t_content))))
@@ -24,17 +29,16 @@ t_content	*new_elem(t_content *content, char *name, char *path)
 	else if (ft_strcmp(path, "/") == 0 && !(ft_strcmp(name, "/") == 0))
 		new->path = ft_joinfree("/", name, 0);
 	else
-	{
-		new->path = ft_joinfree(path, "/", 0);
-		new->path = ft_joinfree(new->path, name, 0);
-	}
-	new->buff = (struct stat *)ft_memalloc(sizeof(struct stat));
-	if (lstat(new->path, &buf) == -1)
+		double_joinfree(path, name, new);
+	new->buff = (struct stat*)ft_memalloc(sizeof(struct stat));
+	if (lstat(new->path, new->buff) == -1)
 	{
 		write(2, "ls: ", 4);
 		perror(new->path);
 	}
-	*new->buff = buf;
 	new->next = content;
+	if (content)
+		content->prev = new;
+	new->prev = NULL;
 	return (new);
 }

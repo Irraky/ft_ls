@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_node.c                                         :+:      :+:    :+:   */
+/*   ft_ilen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/26 15:03:15 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 16:37:02 by drecours         ###   ########.fr       */
+/*   Created: 2017/01/04 15:34:26 by drecours          #+#    #+#             */
+/*   Updated: 2017/05/02 15:53:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libftprintf.h"
 
-t_dir		*new_node(t_dir *dir, char *str)
+int		ft_ilen(long long n)
 {
-	t_dir	*new;
+	int		i;
 
-	new = NULL;
-	if (!(new = ft_memalloc(sizeof(t_dir))))
-		exit(-1);
-	new->dname = ft_strdup(str);
-	new->next = dir;
-	return (new);
+	if (n == -9223372036854775807 - 1)
+		return (20);
+	if (n == 0)
+		return (1);
+	i = (n < 0) ? 1 : 0;
+	n = (n < 0) ? -n : n;
+	while (n > 0)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
 }

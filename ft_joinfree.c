@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 15:41:18 by drecours          #+#    #+#             */
-/*   Updated: 2017/06/30 15:53:50 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/19 14:44:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*ft_joinfree(char const *s1, char const *s2, int nb)
 {
-	size_t			size;
-	size_t			i;
-	size_t			j;
-	char			*str;
+	int			size;
+	int			i;
+	int			j;
+	char		*str;
 
 	if (!s1)
 	{
@@ -27,7 +27,7 @@ char	*ft_joinfree(char const *s1, char const *s2, int nb)
 	i = -1;
 	j = 0;
 	size = ft_strlen(s1) + ft_strlen(s2);
-	if (!(str = (char*)ft_memalloc(sizeof(str) * size + 1)))
+	if (!(str = (char*)ft_memalloc(sizeof(char) * size + 1)))
 		return (NULL);
 	while (s1[++i])
 		str[i] = s1[i];

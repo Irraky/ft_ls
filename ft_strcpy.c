@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_node.c                                         :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/26 15:03:15 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/09 16:37:02 by drecours         ###   ########.fr       */
+/*   Created: 2016/11/21 13:59:45 by drecours          #+#    #+#             */
+/*   Updated: 2016/11/21 14:20:41 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-t_dir		*new_node(t_dir *dir, char *str)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	t_dir	*new;
+	int i;
 
-	new = NULL;
-	if (!(new = ft_memalloc(sizeof(t_dir))))
-		exit(-1);
-	new->dname = ft_strdup(str);
-	new->next = dir;
-	return (new);
+	i = -1;
+	while (src[++i] != '\0')
+		dst[i] = src[i];
+	dst[i] = '\0';
+	return (dst);
 }
