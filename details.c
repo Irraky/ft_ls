@@ -69,7 +69,9 @@ static void				ft_name(t_content *content, t_env *env)
 	i = -1;
 	while (++i < 0)
 		link[i] = '\0';
-	if ((name = ft_strrchr(content->path, '/')) == NULL)
+	if ((name = ft_strrchr(content->path, '/')) == NULL ||
+			((S_ISLNK(content->buff->st_mode) ||
+			  S_ISCHR(content->buff->st_mode)) && env->start == 1))
 		ft_printf("%s", content->path);
 	else
 		ft_printf("%s", &name[1]);
@@ -101,9 +103,5 @@ void					details(t_content *content, t_env *env, int spaces[5])
 		ft_blocksandtime(content->buff, spaces, env);
 	}
 	if (!(env->flagname == 1 && (S_ISDIR(content->buff->st_mode))))
-		if (!(S_ISLNK(content->buff->st_mode)))
 			ft_name(content, env);
-	if (S_ISLNK(content->buff->st_mode) && verify_link(content)
-			&& (env->start != 1 || env->flag[0]))
-		ft_name(content, env);
 }
