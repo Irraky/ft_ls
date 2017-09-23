@@ -54,27 +54,33 @@ static void			swap_nodes(t_content *last, t_content *content, t_env *env)
 
 t_content			*lst_sort(t_content *content, short fg, t_env *env)
 {
-	t_content	*tmp;
 	t_content	*start;
+	t_content	*end;
+	t_content	*bigger;
 
 	start = content;
-	tmp = content;
-	while (content && content->next)
-		if ((fg == 0 && (content->buff->st_mtime < content->next->buff->st_mtime
-			|| (content->buff->st_mtime == content->next->buff->st_mtime &&
-				ft_strcmp(content->path, content->next->path) > 0))) ||
-				(ft_strcmp(content->path, content->next->path) > 0 && fg == 1))
+	end = env->end;
+	bigger = content;
+	while (start != end)
+	{
+		while (content && content->next)
 		{
-			start = (tmp == content) ? content->next : start;
-			swap_nodes(tmp, content, env);
-			content = start;
-			tmp = start;
-		}
-		else
-		{
-			tmp = (tmp != content) ? tmp->next : tmp;
+			if ((fg == 0 && (content->buff->st_mtime < bigger->buff->st_mtime
+					|| (content->buff->st_mtime == bigger->buff->st_mtime &&
+					ft_strcmp(content->path, bigger->path) > 0))) ||
+					(ft_strcmp(content->path, bigger->path) > 0 && fg == 1))
+				bigger = content;
 			content = content->next;
 		}
-	env->end = content;
+		if (bigger == start)
+			start = start->next;
+		if (end != bigger)
+			swap_nodes(end, bigger, env);
+		end = bigger;
+		if (!end->next)
+			env->end = end;
+		bigger = start;
+		content = start;
+	}
 	return (start);
 }
