@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:24 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 12:52:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:06:08 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void				rights(t_content *content)
 	grp_rights(content->buff->st_mode);
 	oth_rights(content->buff->st_mode);
 	acl = NULL;
-	acl = NULL;
 	acl = acl_get_link_np(content->path, ACL_TYPE_EXTENDED);
 	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &entry) == -1)
 	{
@@ -70,5 +69,5 @@ void				rights(t_content *content)
 	acl_c = listxattr(content->path, NULL, 0, XATTR_NOFOLLOW) > 0 ? '@' : acl_c;
 	ft_printf("%c", acl_c);
 	if (acl)
-		free(acl);
+		acl_free(acl);
 }

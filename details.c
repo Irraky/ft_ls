@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 14:03:19 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:50:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5],
 	char			*tmp;
 	char			*year;
 
-	(void)spaces;
-	(void)env;
-
 	if (S_ISCHR(data->st_mode) || S_ISBLK(data->st_mode))
 	{
 		ft_printf("%*d", spaces[3] - 1, major(data->st_rdev));
@@ -61,9 +58,6 @@ static void				ft_blocksandtime(struct stat *data, int spaces[5],
 		ft_printf("%s ", tmp);
 	}
 	ft_strdel(&tmp);
-	(void)year;
-	(void)tmp;
-	(void)data;
 }
 
 static void				ft_name(t_content *content, t_env *env)
@@ -97,9 +91,7 @@ void					details(t_content *content, t_env *env, int spaces[5])
 				(S_ISLNK(content->buff->st_mode) && verify_link(content))))
 	{
 		type(content);
-		(void) spaces;
-		(void) grp;
-		(void) pwd;
+		ft_putnbr_fd(content->buff->st_nlink, 1);
 		ft_printf("%*d ", spaces[0], content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
 			ft_printf("%*-s ", spaces[1], pwd->pw_name);

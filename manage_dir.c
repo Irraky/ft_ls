@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 15:40:32 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 18:07:11 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static t_content	*readit(t_content *content, t_dir *dir,
 {
 	DIR				*rep;
 	struct dirent	*cur_file;
+	int				i;
 
 	cur_file = NULL;
+	i = 1;
 	if (data.st_mode & S_IXUSR)
 	{
 		if ((rep = opendir(dir->dname)) != NULL)
@@ -42,8 +44,11 @@ static t_content	*readit(t_content *content, t_dir *dir,
 				content = new_elem(content, cur_file->d_name, dir->dname);
 				if (S_ISLNK(content->buff->st_mode))
 					env->device = 1;
-				if (!content->next)
+				if (i == 1)
+				{
+					i = 0;
 					env->end = content;
+				}
 			}
 			if ((closedir(rep)) == -1)
 				exit(-1);
@@ -76,11 +81,12 @@ t_dir				*manage_dir(t_dir *dir, t_env *env)
 
 	env->bgn = NULL;
 	env->end = NULL;
+	content = NULL;
 	if (lstat(dir->dname, &data) == -1)
 		dir = stat_error(env, dir);
 	else
 	{
-		if (data.st_mode & S_IROTH)
+		if (data.st_mode & S_IRUSR)
 		{
 			content = readit(env->bgn, dir, data, env);
 			count(content, dir, env, spaces);
