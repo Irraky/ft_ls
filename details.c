@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 16:50:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 18:31:56 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void					details(t_content *content, t_env *env, int spaces[5])
 				(S_ISLNK(content->buff->st_mode) && verify_link(content))))
 	{
 		type(content);
-		ft_putnbr_fd(content->buff->st_nlink, 1);
 		ft_printf("%*d ", spaces[0], content->buff->st_nlink);
 		if ((pwd = getpwuid(content->buff->st_uid)) != NULL && pwd->pw_name)
 			ft_printf("%*-s ", spaces[1], pwd->pw_name);

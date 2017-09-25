@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 15:29:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:58:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,27 @@ void				ft_putinit(t_e *env, char *addit, int size)
 
 static void			ft_init_env(t_e *env)
 {
-	ft_bzero(env, sizeof(t_e));
+	env->indexstr = 0;
+	env->indexbuff = 0;
+	env->i = 0;
+	env->conv.conversion = -1;
+	ft_bzero(&env->buffer, BUFF_SIZE);
+	ft_bzero(&env->conv.nb, 65);
+	ft_bzero(&env->conv.nbp, 65);
+	env->weight = 0;
+	env->conv.champ = 0;
 	env->conv.precision = -1;
+	env->conv.neg = 0;
+	env->conv.zero = 0;
+	env->conv.space = 0;
+	env->conv.sharp = 0;
+	env->conv.plus = 0;
+	env->h = 0;
+	env->hh = 0;
+	env->l = 0;
+	env->ll = 0;
+	env->j = 0;
+	env->z = 0;
 }
 
 static void			destroy_env(t_e *env)
