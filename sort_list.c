@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 15:53:04 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 18:04:32 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 18:14:57 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void			swap_nodes(t_content *last, t_content *content)
 {
 
-	struct stat	*tmp1;
+	struct stat	tmp1;
 	char		*tmp2;
 
-	tmp1 = last->buff;
+	tmp1 = *last->buff;
 	tmp2 = last->path;
 
-	last->buff = content->buff;
+	*last->buff = *content->buff;
 	last->path = content->path;
-	content->buff = tmp1;
+	*content->buff = tmp1;
 	content->path = tmp2;
 }
 
