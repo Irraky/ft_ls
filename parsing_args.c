@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/18 17:24:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 10:13:29 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void			sort_alpha(char **arg)
 	}
 }
 
-static t_content	*sort_type(char **arg, t_content *content, int *space)
+static t_content	*sort_type(char **arg, t_content *content, int *space,
+					t_env *env)
 {
 	struct stat		buf;
 	int				i;
@@ -48,8 +49,12 @@ static t_content	*sort_type(char **arg, t_content *content, int *space)
 		}
 	i = -1;
 	while (arg[++i])
+	{
 		if (lstat(arg[i], &buf) != -1)
 			content = new_elem(content, arg[i], NULL);
+		if (i == 0)
+		env->end = content;
+	}
 	return (content);
 }
 
@@ -78,6 +83,6 @@ t_content			*parsing_args(char **arg, int arc, t_env *env,
 		env->flagname = 1;
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
-	content = sort_type(&arg[begin], content, space);
+	content = sort_type(&arg[begin], content, space, env);
 	return (content);
 }

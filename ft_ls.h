@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/20 16:00:40 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 14:04:23 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void					details(t_content *content, t_env *env, int spaces[5]);
 int						get_data(char **argv, t_env *env);
 t_dir					*display_file(t_content *content, t_dir *dir,
 						t_env *env, int spaces[5]);
-void					manage_dir(t_dir *dir, t_env *env);
+t_dir					*manage_dir(t_dir *dir, t_env *env);
 void					rights(t_content *content);
 void					count(t_content *content, t_dir *dir, t_env *env,
 						int spaces[5]);
@@ -81,7 +81,10 @@ t_content				*new_elem(t_content *content, char *name, char *path);
 t_content				*clean(t_content *content, t_env *env);
 t_dir					*clean_it(t_dir *dir);
 int						ft_printf(const char *format, ...);
-
+void					ft_putstr(const char *str);
+void					ft_putstr_fd(const char *str, int fd);
+void					ft_putnbr_fd(int n, int fd);
+void					ft_putchar_fd(char c, int fd);
 char					*ft_strrchr(const char *s, int c);
 void					*ft_memalloc(size_t size);
 void					*ft_memset(void *b, int c, size_t len);

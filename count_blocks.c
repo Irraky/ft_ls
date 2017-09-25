@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/20 16:29:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 14:35:20 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void				count(t_content *content, t_dir *dir, t_env *env,
 	if (!(env->bclvide == 0))
 	{
 		if (env->flagname == 0 && dir->dname)
-			ft_printf("%s:\n", dir->dname);
-		if (tmp->path != NULL && fichier == 1 && env->flag[0])
-			ft_printf("total %d\n", total);
+			ft_printf("%s\n", dir->dname);
+		if (tmp->path != NULL && fichier == 1 && env->flag[0])	
+			ft_printf("total %d\n", total);		
 		env->flagname = 0;
 	}
 	env->bclvide = 1;

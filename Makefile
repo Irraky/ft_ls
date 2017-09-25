@@ -6,7 +6,7 @@
 #    By: drecours <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/21 13:45:10 by drecours          #+#    #+#              #
-#    Updated: 2017/09/20 16:33:46 by drecours         ###   ########.fr        #
+#    Updated: 2017/09/25 11:53:13 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,11 @@ SRC = details.c \
 	  ft_memdel.c \
 	  count_blocks.c \
 	  sort_list.c \
-	  insert_node.c
+	  insert_node.c \
+	  ft_putstr.c \
+	  ft_putstr_fd.c \
+	  ft_putnbr_fd.c \
+	  ft_putchar_fd.c
 
 OBJ = $(SRC:.c=.o)
 CC = gcc

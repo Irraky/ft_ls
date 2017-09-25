@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 10:43:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/20 16:30:20 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 14:04:10 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int				main(int argc, char **argv)
 		if (space == 1)
 			write(1, "\n", 1);
 		env.start = 0;
-		if (dir && dir->dname)
-			manage_dir(dir, &env);
+		while (dir && dir->dname)
+			dir = manage_dir(dir, &env);
 		clean_first(&env);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:24 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/20 17:15:24 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/25 12:52:56 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,35 @@ static void			usr_rights(mode_t x)
 	ft_printf((S_IRUSR & x) ? "r" : "-");
 	ft_printf((S_IWUSR & x) ? "w" : "-");
 	if ((S_ISUID & x) && !(S_IXUSR & x))
-		ft_printf("S");
+		write(1, "S", 1);
 	else if (S_ISUID & x)
-		ft_printf("s");
+		write(1, "s", 1);
 	else
-		ft_printf((S_IXUSR & x) ? "x" : "-");
+		write(1, (S_IXUSR & x) ? "x" : "-", 1);
 }
 
 static void			grp_rights(mode_t x)
 {
-	ft_printf((S_IRGRP & x) ? "r" : "-");
-	ft_printf((S_IWGRP & x) ? "w" : "-");
+	write(1, (S_IRGRP & x) ? "r" : "-", 1);
+	write(1, (S_IWGRP & x) ? "w" : "-", 1);
 	if ((S_ISGID & x) && !(S_IXGRP & x))
-		ft_printf("S");
+		write(1, "S", 1);
 	else if (S_ISGID & x)
-		ft_printf("s");
+		write(1, "s", 1);
 	else
-		ft_printf((S_IXGRP & x) ? "x" : "-");
+		write(1, (S_IXGRP & x) ? "x" : "-", 1);
 }
 
 static void			oth_rights(mode_t x)
 {
-	ft_printf((S_IROTH & x) ? "r" : "-");
-	ft_printf((S_IWOTH & x) ? "w" : "-");
+	write(1, (S_IROTH & x) ? "r" : "-", 1);
+	write(1, (S_IWOTH & x) ? "w" : "-", 1);
 	if ((S_ISVTX & x) && !(S_IXOTH & x))
-		ft_printf("S");
+		write(1, "S", 1);
 	else if (S_ISVTX & x)
-		ft_printf("s");
+		write(1, "s", 1);
 	else
-		ft_printf((S_IXOTH & x) ? "x" : "-");
+		write(1, (S_IXOTH & x) ? "x" : "-", 1);
 }
 
 void				rights(t_content *content)
