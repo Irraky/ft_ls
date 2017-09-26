@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 10:13:29 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/26 15:36:17 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void			sort_alpha(char **arg)
 	}
 }
 
-static t_content	*sort_type(char **arg, t_content *content, int *space,
-					t_env *env)
+static t_content	*sort_type(char **arg, t_content *content, t_env *env)
 {
 	struct stat		buf;
 	int				i;
@@ -43,7 +42,6 @@ static t_content	*sort_type(char **arg, t_content *content, int *space,
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
-			*space = 1;
 			write(2, "ls: ", 4);
 			perror(arg[i]);
 		}
@@ -58,8 +56,7 @@ static t_content	*sort_type(char **arg, t_content *content, int *space,
 	return (content);
 }
 
-t_content			*parsing_args(char **arg, int arc, t_env *env,
-		int *space)
+t_content			*parsing_args(char **arg, int arc, t_env *env)
 {
 	int				begin;
 	t_content		*content;
@@ -81,8 +78,10 @@ t_content			*parsing_args(char **arg, int arc, t_env *env,
 		}
 	if (arc - begin <= 1)
 		env->flagname = 1;
+	if (arc - begin > 1)
+		env->nbthing = 1;
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
-	content = sort_type(&arg[begin], content, space, env);
+	content = sort_type(&arg[begin], content,env);
 	return (content);
 }

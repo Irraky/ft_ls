@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 18:07:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:08:13 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,36 +67,54 @@ void				permission_denied(t_dir *dir)
 
 	name = (ft_strrchr(dir->dname, '/') == NULL) ? dir->dname :
 		(ft_strrchr(dir->dname, '/') + 1);
-	ft_printf("%s:\n", dir->dname);
 	write(2, "ls: ", 4);
 	write(2, name, ft_strlen(name));
-	write(2, " Permission denied\n", 19);
+	write(2, ": Permission denied\n", 20);
+	if (dir && dir->next && dir->next->dname)
+		write(1, "\n", 1);
+}
+
+t_dir				*allowed_dir(t_dir *dir, t_env *env, struct stat data)
+{
+	int		spaces[5];
+	t_content		*content;
+
+	content = NULL;
+	if (data.st_mode & S_IXUSR)
+	{
+		content = readit(env->bgn, dir, data, env);
+		count(content, env, spaces);
+		dir = display_file(content, dir, env, spaces);
+	}
+	else
+	{
+		if (dir->next && dir->next->dname)
+			write(1, "\n", 1);
+		dir = clean_it(dir);
+	}
+	return (dir);
 }
 
 t_dir				*manage_dir(t_dir *dir, t_env *env)
 {
-	t_content		*content;
 	struct stat		data;
-	int				spaces[5];
 
 	env->bgn = NULL;
 	env->end = NULL;
-	content = NULL;
 	if (lstat(dir->dname, &data) == -1)
 		dir = stat_error(env, dir);
 	else
 	{
+		if (env->nbthing == 1 || env->start == -1)
+			ft_printf("%s:\n", dir->dname);
 		if (data.st_mode & S_IRUSR)
-		{
-			content = readit(env->bgn, dir, data, env);
-			count(content, dir, env, spaces);
-			dir = display_file(content, dir, env, spaces);
-		}
+			dir = allowed_dir(dir, env, data);
 		else
 		{
 			permission_denied(dir);
 			dir = clean_it(dir);
 		}
 	}
+	env->start = -1;
 	return (dir);
 }
