@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 17:08:13 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/26 19:26:50 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_dir				*allowed_dir(t_dir *dir, t_env *env, struct stat data)
 	if (data.st_mode & S_IXUSR)
 	{
 		content = readit(env->bgn, dir, data, env);
-		count(content, env, spaces);
+		count(content, env, spaces, dir);
 		dir = display_file(content, dir, env, spaces);
 	}
 	else

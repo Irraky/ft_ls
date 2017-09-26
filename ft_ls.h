@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:09:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 16:59:28 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:42:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_dir					*display_file(t_content *content, t_dir *dir,
 						t_env *env, int spaces[5]);
 t_dir					*manage_dir(t_dir *dir, t_env *env);
 void					rights(t_content *content);
-void					count(t_content *content, t_env *env, int spaces[5]);
+void					count(t_content *content, t_env *env, int spaces[5],
+						t_dir *dir);
 t_content				*lst_sort(t_content *content, short fg, t_env *env);
 int						verify_link(t_content *content);
 

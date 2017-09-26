@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 17:24:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:43:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static t_content	*add_total(t_content *content, int *fichier, int *total)
 	return (content);
 }
 
-void				count(t_content *content, t_env *env, int spaces[5])
+void				count(t_content *content, t_env *env, int spaces[5], 
+					t_dir *dir)
 {
 	int			total;
 	t_content	*tmp;
@@ -81,7 +82,7 @@ void				count(t_content *content, t_env *env, int spaces[5])
 		while (content && content->path)
 			content = add_total(content, &fichier, &total);
 	}
-	if (tmp != NULL && fichier == 1 && env->flag[0])	
+	if (dir && dir->dname && tmp != NULL && fichier == 1 && env->flag[0])	
 		ft_printf("total %d\n", total);		
 	env->flagname = 0;
 }
