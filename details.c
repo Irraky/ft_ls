@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 15:34:09 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/25 18:31:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:36:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void				ft_name(t_content *content, t_env *env)
 		link[i] = '\0';
 	if ((name = ft_strrchr(content->path, '/')) == NULL ||
 			((S_ISLNK(content->buff->st_mode) ||
-			  S_ISCHR(content->buff->st_mode)) && env->start == 1))
+			S_ISCHR(content->buff->st_mode)) && env->start == 1))
 		ft_printf("%s", content->path);
 	else
 		ft_printf("%s", &name[1]);
@@ -103,5 +103,5 @@ void					details(t_content *content, t_env *env, int spaces[5])
 		ft_blocksandtime(content->buff, spaces, env);
 	}
 	if (!(env->flagname == 1 && (S_ISDIR(content->buff->st_mode))))
-			ft_name(content, env);
+		ft_name(content, env);
 }

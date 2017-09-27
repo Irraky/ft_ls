@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 15:55:32 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 19:26:50 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:35:56 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,24 @@ static t_content	*readit(t_content *content, t_dir *dir,
 
 	cur_file = NULL;
 	i = 1;
-	if (data.st_mode & S_IXUSR)
+	if ((data.st_mode & S_IXUSR) && ((rep = opendir(dir->dname)) != NULL))
 	{
-		if ((rep = opendir(dir->dname)) != NULL)
+		while ((cur_file = readdir(rep)))
 		{
-			while ((cur_file = readdir(rep)))
+			content = new_elem(content, cur_file->d_name, dir->dname);
+			if (S_ISLNK(content->buff->st_mode))
+				env->device = 1;
+			if (i == 1)
 			{
-				content = new_elem(content, cur_file->d_name, dir->dname);
-				if (S_ISLNK(content->buff->st_mode))
-					env->device = 1;
-				if (i == 1)
-				{
-					i = 0;
-					env->end = content;
-				}
+				i = 0;
+				env->end = content;
 			}
-			if ((closedir(rep)) == -1)
-				exit(-1);
 		}
-		else
+		if ((closedir(rep)) == -1)
 			exit(-1);
+		content = lst_sort(content, env->flag[4] ? 0 : 1, env);
 	}
 	env->bgn = content;
-	content = lst_sort(content, env->flag[4] ? 0 : 1, env);
 	return (content);
 }
 
@@ -76,7 +71,7 @@ void				permission_denied(t_dir *dir)
 
 t_dir				*allowed_dir(t_dir *dir, t_env *env, struct stat data)
 {
-	int		spaces[5];
+	int				spaces[5];
 	t_content		*content;
 
 	content = NULL;

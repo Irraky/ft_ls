@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 17:20:05 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 17:43:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:38:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,36 +53,32 @@ static void			count_spaces(int spaces[5], t_content *content)
 	}
 }
 
-static t_content	*add_total(t_content *content, int *fichier, int *total)
+static t_content	*add_total(t_content *content, int *total)
 {
 	char		*name;
 
 	name = (ft_strrchr(content->path, '/') == NULL) ? content->path
 		: (ft_strrchr(content->path, '/') + 1);
-	if (!(ft_strcmp(name, ".") == 0) && !(ft_strcmp(name, "..") == 0))
-		*fichier = 1;
 	*total += content->buff->st_blocks;
 	content = content->next;
 	return (content);
 }
 
-void				count(t_content *content, t_env *env, int spaces[5], 
+void				count(t_content *content, t_env *env, int spaces[5],
 					t_dir *dir)
 {
 	int			total;
 	t_content	*tmp;
-	int			fichier;
 
 	total = 0;
 	tmp = content;
-	fichier = 0;
 	if (content != NULL)
 	{
 		count_spaces(spaces, content);
 		while (content && content->path)
-			content = add_total(content, &fichier, &total);
+			content = add_total(content, &total);
 	}
-	if (dir && dir->dname && tmp != NULL && fichier == 1 && env->flag[0])	
-		ft_printf("total %d\n", total);		
+	if (dir && dir->dname && tmp != NULL && env->flag[0])
+		ft_printf("total %d\n", total);
 	env->flagname = 0;
 }

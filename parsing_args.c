@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_args.c                                      :+:      :+:    :+:   */
+/*   parsing_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/26 12:33:44 by drecours          #+#    #+#             */
-/*   Updated: 2017/09/26 15:36:17 by drecours         ###   ########.fr       */
+/*   Created: 2017/09/27 13:59:49 by drecours          #+#    #+#             */
+/*   Updated: 2017/09/27 13:59:53 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,25 @@ static void			sort_alpha(char **arg)
 	}
 }
 
+static t_content	*no_elem(void)
+{
+	t_content		*new;
+
+	if (!(new = ft_memalloc(sizeof(t_content))))
+		exit(-1);
+	new->path = ft_strdup(".");
+	if (!(new->buff = (struct stat*)ft_memalloc(sizeof(struct stat))))
+		exit(-1);
+	if (lstat(new->path, new->buff) == -1)
+	{
+		write(2, "ls: ", 4);
+		perror(new->path);
+	}
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
 static t_content	*sort_type(char **arg, t_content *content, t_env *env)
 {
 	struct stat		buf;
@@ -38,7 +57,7 @@ static t_content	*sort_type(char **arg, t_content *content, t_env *env)
 
 	i = -1;
 	if (arg[0] == NULL)
-		content = new_elem(content, ".", "");
+		content = no_elem();
 	while (arg[++i])
 		if (lstat(arg[i], &buf) == -1)
 		{
@@ -51,7 +70,7 @@ static t_content	*sort_type(char **arg, t_content *content, t_env *env)
 		if (lstat(arg[i], &buf) != -1)
 			content = new_elem(content, arg[i], NULL);
 		if (i == 0)
-		env->end = content;
+			env->end = content;
 	}
 	return (content);
 }
@@ -76,12 +95,10 @@ t_content			*parsing_args(char **arg, int arc, t_env *env)
 			else
 				break ;
 		}
-	if (arc - begin <= 1)
-		env->flagname = 1;
-	if (arc - begin > 1)
-		env->nbthing = 1;
+	env->flagname = (arc - begin <= 1) ? 1 : env->flagname;
+	env->nbthing = (arc - begin > 1) ? 1 : env->nbthing;
 	if (arg[begin] != NULL)
 		sort_alpha(&arg[begin]);
-	content = sort_type(&arg[begin], content,env);
+	content = sort_type(&arg[begin], content, env);
 	return (content);
 }
